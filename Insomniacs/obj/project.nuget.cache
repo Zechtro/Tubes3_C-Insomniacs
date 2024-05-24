@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1xqxgAm4rwxbHznNPzK1SkqKQnPFxmrD6B6gSnD1iGkxyEoG/itsO4ZRzxc5gqsZCYLEmN2luZAOSi8yb/cVBQ==",
+  "dgSpecHash": "tlexsqcg5bcv5oGtdCQw/IEtSwZxuHjyTxhkxuO4+YO0B+42KB0rMC1oZbyg7JlwZTQykf1Dg2l38jb68Jpd8g==",
   "success": true,
-  "projectFilePath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
+  "projectFilePath": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj",
   "expectedPackageFiles": [
-    "/home/marv/.nuget/packages/microsoft.win32.systemevents/8.0.0/microsoft.win32.systemevents.8.0.0.nupkg.sha512",
-    "/home/marv/.nuget/packages/sixlabors.imagesharp/3.1.4/sixlabors.imagesharp.3.1.4.nupkg.sha512",
-    "/home/marv/.nuget/packages/system.drawing.common/8.0.5/system.drawing.common.8.0.5.nupkg.sha512"
+    "/home/riyorax/.nuget/packages/microsoft.win32.systemevents/8.0.0/microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "/home/riyorax/.nuget/packages/sixlabors.imagesharp/3.1.4/sixlabors.imagesharp.3.1.4.nupkg.sha512",
+    "/home/riyorax/.nuget/packages/system.drawing.common/8.0.5/system.drawing.common.8.0.5.nupkg.sha512"
   ],
   "logs": []
 }
