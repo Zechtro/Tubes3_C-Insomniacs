@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/Insomniacs.csproj": {}
+  },
+  "projects": {
+    "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/Insomniacs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/Insomniacs.csproj",
+        "projectName": "Insomniacs",
+        "projectPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/Insomniacs.csproj",
+        "packagesPath": "/home/marv/.nuget/packages/",
+        "outputPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/marv/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.128/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
