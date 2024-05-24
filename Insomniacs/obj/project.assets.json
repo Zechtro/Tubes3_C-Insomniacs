@@ -149,19 +149,19 @@
     ]
   },
   "packageFolders": {
-    "/home/marv/.nuget/packages/": {}
+    "/home/riyorax/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
+      "projectUniqueName": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj",
       "projectName": "Insomniacs",
-      "projectPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
-      "packagesPath": "/home/marv/.nuget/packages/",
-      "outputPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/obj/",
+      "projectPath": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj",
+      "packagesPath": "/home/riyorax/.nuget/packages/",
+      "outputPath": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/marv/.nuget/NuGet/NuGet.Config"
+        "/home/riyorax/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
