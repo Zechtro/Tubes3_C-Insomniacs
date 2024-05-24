@@ -9,53 +9,28 @@ public class Program
     public static void Main()
     {
 
-        String filePath = "../test/8__M_Left_ring_finger.BMP";
-        String filePath2 = "damn.bmp";
-        // Image<Rgba32> img = BMPToBytes.ConvertToBlackAndWhite(filePath2);
-
-        // process an image to ascii for each row
-
-        // example of comparing same text
-        // process bmp 
-        List<string> text = BMPToBytes.ConvertBMPToASCII(filePath);
-
-        // getting pattern
-        string pattern = BMPToBytes.getImagePattern(filePath2);
 
 
-        // trying to find pattern in each row of said text
-        int row = 0;
-        int i = -1;
-        foreach (string entries in text)
+        string test = "kajsnd.aladlka.lsfdm.ladsdfasdfnmdfssakjdLKASJDLKAsd";
+        string test2 = "asdkjhdsfglsdfsdfasdfnmdfsasdasdasdadsf";
+        string pattern = "sdfasdfnmdfs";
+        BoyerMoore bm = new BoyerMoore(pattern);
+        KMPAlgorithm kmp = new KMPAlgorithm(pattern);
+
+        int result = bm.Search(test);
+        int result2 = bm.Search(test2);
+        int result3 = kmp.Search(test);
+        int result4 = kmp.Search(test2);
+        if (result != -1)
         {
-            i = KMPAlgorithm.KMPSearch(pattern, entries);
-            if (i != -1)
-            {
-                break;
-            }
-            row++;
-
-        }
-        if (i != -1)
-        {
-            Console.WriteLine("Find at row : " + row + " at index " + i);
-            Console.WriteLine("ROW : " + text[row]);
+            Console.WriteLine($"Pattern found at index {result}");
+            Console.WriteLine($"Pattern found at index {result2}");
+            Console.WriteLine($"Pattern found at index {result3}");
+            Console.WriteLine($"Pattern found at index {result4}");
         }
         else
         {
-            Console.WriteLine("Not exact match !");
+            Console.WriteLine("Pattern not found");
         }
-
-
-
-        // foreach (string entry in text){
-        //     Console.WriteLine(entry);
-        // }
-        // string t1 = "ABCLOVELIFEAD";
-        // string t2 = "LOVE";
-        // int  i = KMPAlgorithm.KMPSearch(t2, t1);
-        // Console.WriteLine(i);
-        // BMPToBytes.getImagePattern(filePath2);
-
     }
 }

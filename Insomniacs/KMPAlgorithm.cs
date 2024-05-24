@@ -1,24 +1,30 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 
 public class KMPAlgorithm
 {
+    private string pattern;
+    private int[] lps;
 
-    private static void ComputeLPSArray(string pattern, int M, int[] lps)
+    public KMPAlgorithm(string pattern)
     {
+        if (string.IsNullOrEmpty(pattern))
+        {
+            throw new ArgumentException("Pattern cannot be null or empty.");
+        }
+
+        this.pattern = pattern;
+        this.lps = new int[pattern.Length];
+        ComputeLPSArray();
+    }
+
+    private void ComputeLPSArray()
+    {
+        int M = pattern.Length;
         int length = 0;
         lps[0] = 0; // lps[0] is always 0
         int i = 1;
 
         while (i < M)
         {
-            // a b a b c a b c a b c
-            // 0 0 1 2
-
             if (pattern[i] == pattern[length])
             {
                 length++;
@@ -41,14 +47,15 @@ public class KMPAlgorithm
     }
 
     // KMP search algorithm
-    public static int KMPSearch(string pattern, string text)
+    public int Search(string text)
     {
+        if (string.IsNullOrEmpty(text))
+        {
+            throw new ArgumentException("Text cannot be null or empty.");
+        }
+
         int M = pattern.Length;
         int N = text.Length;
-
-        // Create LPS array
-        int[] lps = new int[M];
-        ComputeLPSArray(pattern, M, lps);
 
         int i = 0; // index for text
         int j = 0; // index for pattern
@@ -62,7 +69,7 @@ public class KMPAlgorithm
 
             if (j == M)
             {
-                Console.WriteLine("Found pattern at index " + (i - j));
+                // Console.WriteLine("Found pattern at index " + (i - j));
                 return (i - j);
             }
             else if (i < N && pattern[j] != text[i])
@@ -80,14 +87,5 @@ public class KMPAlgorithm
 
         return -1;
     }
-
-
-    // public static int imageComparison(string pattern, string filePath)
-    // {
-    //     // process image filepath
-        
-    // }
-
-    // Main function to test the KMP search algorithm
-
 }
+
