@@ -28,8 +28,9 @@ public class BMPToBytes
     }
 
 
-    public static List<string> ConvertBMPToASCII(Image<Rgba32> image)
+    public static List<string> ConvertBMPToASCII(string filePath)
     {
+        Image<Rgba32> image =  ConvertToBlackAndWhite(filePath);
         List<string> asciiRows = new List<string>();
         int width = image.Width;
         int height = image.Height;
@@ -97,7 +98,7 @@ public class BMPToBytes
         return binaryRows;
     }
 
-    public static void getImagePattern(String filename)
+    public static string getImagePattern(String filename)
     {
         try
         {
@@ -161,17 +162,25 @@ public class BMPToBytes
             }
 
             List<string> result = segments.GetRange(startIndex, 8);
-
+            string finalPattern = "";
             foreach (string entry in result)
-            {
+            {   
+                int asciiValue = Convert.ToInt32(entry, 2);
+                char asciiCharacter = (char)asciiValue;
                 Console.WriteLine(entry);
+                finalPattern += asciiCharacter;
             }
+            Console.WriteLine(finalPattern);
+            return finalPattern;
+   
+
 
 
         }
         catch (Exception e)
         {
             Console.WriteLine($"Something went wrong {e.Message}");
+            return "";
         }
     }
 

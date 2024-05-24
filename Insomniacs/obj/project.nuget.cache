@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+8koGU/X2ICHcJe6l70tgtncq8V3Q3TgHzqrr/1VksStCW8x+3NxyhyAWUk1qcq79RVA3BbX7mghZbS7RvCtag==",
+  "dgSpecHash": "1xqxgAm4rwxbHznNPzK1SkqKQnPFxmrD6B6gSnD1iGkxyEoG/itsO4ZRzxc5gqsZCYLEmN2luZAOSi8yb/cVBQ==",
   "success": true,
-  "projectFilePath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/Insomniacs/Insomniacs.csproj",
+  "projectFilePath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
   "expectedPackageFiles": [
     "/home/marv/.nuget/packages/microsoft.win32.systemevents/8.0.0/microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "/home/marv/.nuget/packages/sixlabors.imagesharp/3.1.4/sixlabors.imagesharp.3.1.4.nupkg.sha512",
