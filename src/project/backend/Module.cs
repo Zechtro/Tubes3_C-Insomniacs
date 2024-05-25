@@ -16,13 +16,21 @@ using System.Data.SQLite;
 
 public class SQLiteDataAccess
 {
-    private const string ConnectionString = "Data Source=database/data.db;";
+private const string ConnectionString = "Data Source=backend\\database\\data.db;";
 
     public List<SidikJari> GetSidikJari()
     {
         using (var connection = new SQLiteConnection(ConnectionString))
         {
             connection.Open();
+            var encoding = connection.QuerySingle<String>("PRAGMA encoding");
+            using (StreamWriter writer = new StreamWriter("log.txt"))
+                    {
+                        Console.SetOut(writer); // Redirect output to the file
+                        Console.WriteLine("This message will be written to log.txt");
+                        Console.WriteLine(encoding);
+                    }
+     
             var output = connection.Query<SidikJari>("SELECT * FROM sidik_jari").ToList();
             return output;
         }
@@ -40,9 +48,11 @@ public class SQLiteDataAccess
 }
 
 public class SidikJari
-{
+{   
+
     public string? berkas_citra { get; set; }
     public string? nama { get; set; }
+
 }
 
 public class Biodata

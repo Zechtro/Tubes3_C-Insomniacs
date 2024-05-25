@@ -49,9 +49,15 @@ namespace WinFormsApp3
                     // Console.WriteLine("index: " + i);
                     // Console.WriteLine("index: " + i);
                     // Console.WriteLine("index: " + i);
-
+                    AlgoMaster algo = new AlgoMaster();
                     labelHeaderBiodata.Text = filename;
-                    outPicture.Image = Image.FromFile(filename);
+                    SidikJari temp = algo.search(filename, 0);
+                    if (temp.berkas_citra == ""){
+                        labelHeaderBiodata.Text = temp.nama;
+                    } else {
+                        labelHeaderBiodata.Text = "KETEMU";
+                    }
+                    // outPicture.Image = Image.FromFile("../../test/100__M_Left_index_finger.bmp");
   
 
                 }
