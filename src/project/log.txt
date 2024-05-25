@@ -1,2 +1,2 @@
 This message will be written to log.txt
-UTF-16le
+UTF-8

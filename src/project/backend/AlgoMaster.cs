@@ -52,9 +52,9 @@ namespace WinFormsApp3.backend
 
                 foreach (SidikJari sidik in allSidikJari)
                 {
-                    // string what  = "../../../test/100__M_Left_index_finger";
-                    string prefix = "../../";
-                    string final = prefix + sidik.berkas_citra;
+                    // string what  = "../../../test/100__M_Left_index_finger"
+                    string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
+                    string final = baseDir + sidik.berkas_citra;
                     List<string> text = BMPToBytes.ConvertBMPToASCII(final); // ascii, row of strings
                     index = this.algorithm.searchAllRows(text);
                     if (index != -1)
