@@ -43,15 +43,15 @@ CREATE TABLE `sidik_jari` (
 
 -- Dumping data for table `sidik_jari`
 INSERT INTO `sidik_jari` (`berkas_citra`, `nama`) VALUES
-('test/99_M_Left_index_finger.BMP', 'Andi Sunarya'),
-('test/99_M_Left_middle_finger.BMP', 'Ratna Sari'),
-('test/99_M_Left_ring_finger.BMP', 'Agus Prayogo'),
-('test/99_M_Left_thumb_finger.BMP', 'Dewi Kusuma'),
-('test/99_M_Right_index_finger.BMP', 'Bambang Riswanto'),
-('test/99_M_Right_little_finger.BMP', 'Sari Dewi'),
-('test/99_M_Right_middle_finger.BMP', 'Tony Raharja'),
-('test/99_M_Right_ring_finger.BMP', 'Linda Agustina'),
-('test/99_M_Right_thumb_finger.BMP', 'Rudy Hartanto'),
-('test/99_M_Left_little_finger.BMP', 'Jessica Kumala');
+('test/99__M_Left_index_finger.BMP', 'Andi Sunarya'),
+('test/99__M_Left_middle_finger.BMP', 'Ratna Sari'),
+('test/99__M_Left_ring_finger.BMP', 'Agus Prayogo'),
+('test/99__M_Left_thumb_finger.BMP', 'Dewi Kusuma'),
+('test/99__M_Right_index_finger.BMP', 'Bambang Riswanto'),
+('test/99__M_Right_little_finger.BMP', 'Sari Dewi'),
+('test/99__M_Right_middle_finger.BMP', 'Tony Raharja'),
+('test/99__M_Right_ring_finger.BMP', 'Linda Agustina'),
+('test/99__M_Right_thumb_finger.BMP', 'Rudy Hartanto'),
+('test/99__M_Left_little_finger.BMP', 'Jessica Kumala');
 
 PRAGMA foreign_keys=ON;
