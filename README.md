@@ -34,6 +34,7 @@
 - sudo apt install dotnet-runtime-6.0
 - dotnet add package System.Data.SqlClient
 - dotnet add package System.Data.SQLite
+- 
 
 
 ## Features
