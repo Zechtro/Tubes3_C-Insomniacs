@@ -24,12 +24,12 @@ private const string ConnectionString = "Data Source=backend\\database\\data.db;
         {
             connection.Open();
             var encoding = connection.QuerySingle<String>("PRAGMA encoding");
-            using (StreamWriter writer = new StreamWriter("log.txt"))
-                    {
-                        Console.SetOut(writer); // Redirect output to the file
-                        Console.WriteLine("This message will be written to log.txt");
-                        Console.WriteLine(encoding);
-                    }
+            // using (StreamWriter writer = new StreamWriter("log.txt"))
+            //         {
+            //             Console.SetOut(writer); // Redirect output to the file
+            //             Console.WriteLine("This message will be written to log.txt");
+            //             Console.WriteLine(encoding);
+            //         }
      
             var output = connection.Query<SidikJari>("SELECT * FROM sidik_jari").ToList();
             return output;
