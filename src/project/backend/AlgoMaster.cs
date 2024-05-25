@@ -51,9 +51,10 @@ namespace WinFormsApp3.backend
                 SidikJari temp = new SidikJari();
 
                 foreach (SidikJari sidik in allSidikJari)
-                {
-                    // string what  = "../../../test/100__M_Left_index_finger"
-                    string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
+                {   
+                    string baseDir = "../../";
+                    // // string what  = "../../../test/100__M_Left_index_finger"
+                    // string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
                     string final = baseDir + sidik.berkas_citra;
                     List<string> text = BMPToBytes.ConvertBMPToASCII(final); // ascii, row of strings
                     index = this.algorithm.searchAllRows(text);
