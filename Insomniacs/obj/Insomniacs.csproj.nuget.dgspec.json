@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj": {}
+    "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj": {
+    "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj",
+        "projectUniqueName": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
         "projectName": "Insomniacs",
-        "projectPath": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/Insomniacs.csproj",
-        "packagesPath": "/home/riyorax/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/Maximilian/Documents/GitHub/Tubes3_C-Insomniacs/Insomniacs/obj/",
+        "projectPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/Insomniacs.csproj",
+        "packagesPath": "/home/marv/.nuget/packages/",
+        "outputPath": "/mnt/d/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/insomniacs/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/riyorax/.nuget/NuGet/NuGet.Config"
+          "/home/marv/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,9 +38,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
             "SixLabors.ImageSharp": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
@@ -53,16 +69,31 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.128/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.119/RuntimeIdentifierGraph.json"
         }
       }
     }

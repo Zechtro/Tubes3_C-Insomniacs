@@ -1,5 +1,5 @@
 
-public class KMPAlgorithm
+public class KMPAlgorithm : IBaseAlgorithm
 {
     private string pattern;
     private int[] lps;
@@ -85,6 +85,20 @@ public class KMPAlgorithm
             }
         }
 
+        return -1;
+    }
+
+    
+    public int searchAllRows(List<string> text){
+
+        // for one image
+        int  i = - 1;
+        foreach (string entries in text){
+            i = this.Search(entries);
+            if (i != -1){
+                return i;
+            }
+        }
         return -1;
     }
 }

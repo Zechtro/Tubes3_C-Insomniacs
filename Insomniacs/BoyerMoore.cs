@@ -3,7 +3,7 @@
 
 
 
-public class BoyerMoore
+public class BoyerMoore : IBaseAlgorithm
 {
     private readonly int alphabetSize;
     private readonly int[] badCharacterShift;
@@ -94,7 +94,6 @@ public class BoyerMoore
             borderPositions[i] = j;
         }
     }
-
     private void PreprocessBorderPositions()
     {
         int m = pattern.Length;
@@ -112,6 +111,19 @@ public class BoyerMoore
             }
         }
     }
+    public int searchAllRows(List<string> text){
+
+        // for one image
+        int  i = - 1;
+        foreach (string entries in text){
+            i = this.Search(entries);
+            if (i != -1){
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }
 
 
