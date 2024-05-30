@@ -1,4 +1,4 @@
-
+using System.Diagnostics;
 namespace WinFormsApp3.backend
 {
     public class AlgoMaster
@@ -21,6 +21,8 @@ namespace WinFormsApp3.backend
 
         public Tuple<Biodata?, SidikJari?> Search(string filename, int algorithmType)
         {
+            Stopwatch stopwatch = new Stopwatch();
+
             this.sourcePath = filename;
             // getting pattern from file    
             // get necessary data
@@ -41,10 +43,12 @@ namespace WinFormsApp3.backend
             {
                 this.algorithm = new BoyerMoore(this.pattern);
             }
-            int index ;
+            stopwatch.Start();
+            int index;
+            string baseDir = "../../";
             foreach (SidikJari sidik in allSidikJari)
             {
-                string baseDir = "../../";
+
                 // // string what  = "../../../test/100__M_Left_index_finger"
                 // string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
                 string final = baseDir + sidik.Berkas_citra;
@@ -55,16 +59,28 @@ namespace WinFormsApp3.backend
                     // return sidik;
                     // searching for biodata !!!
                     Biodata? bioMatch = sqlData.searchForBiodata(sidik);
-                    if (bioMatch == null){
+                    if (bioMatch == null)
+                    {
                         // find other possibilities
                         continue;
-                    } else {
-                        return Tuple.Create <Biodata?,SidikJari?>(bioMatch,sidik);
-
+                    }
+                    else
+                    {
+                        stopwatch.Stop();
+                        long timeTaken = stopwatch.ElapsedMilliseconds;
+                        bioMatch.Algoritma = algorithmType == 0 ? "KMP" : "BM";
+                        bioMatch.Presentase = 100;
+                        bioMatch.TimeTaken = timeTaken;
+                        return Tuple.Create<Biodata?, SidikJari?>(bioMatch, sidik);
                     }
                 }
             }
-            return Tuple.Create <Biodata?,SidikJari?>(null,null);
+            stopwatch.Stop();
+            LongestCommonSubsequence lcs = new LongestCommonSubsequence(this.pattern);
+
+            // use LCS
+
+            return lcs.SearchBestMatch(sqlData,allSidikJari);
 
         }
     }

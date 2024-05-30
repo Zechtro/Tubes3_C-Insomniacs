@@ -82,4 +82,7 @@ public class Biodata
     public string? Status_perkawinan { get; set; }
     public string? Pekerjaan { get; set; }
     public string? Kewarganegaraan { get; set; }
+    public string? Algoritma{get; set;}
+    public double? Presentase{get; set;}
+    public long? TimeTaken{get; set;}
 }

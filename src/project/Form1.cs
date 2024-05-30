@@ -28,15 +28,17 @@ namespace WinFormsApp3
             }
         }
 
-        private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari, string algoritma, long timeTaken, double persentase)
+        private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari)
         {
-            labelWaktuPencarian.Text = $"Waktu Pencarian : {timeTaken} ms";
-            labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {persentase}%";
-            labelAlgoritma.Text = $"Algoritma: {algoritma}";
+            
+
+
             
             if (bio != null)
             {
+                labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
                 labelNIK.Text = $"NIK : {bio.NIK}";
+                labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {bio.Presentase}%";
                 labelTempatLahir.Text = $"Tempat Lahir: {bio.Tempat_lahir}";
                 labelJenisKelamin.Text = $"Jenis Kelamin : {bio.Jenis_kelamin}";
                 labelGolonganDarah.Text = $"Golongan Darah : {bio.Golongan_darah}";
@@ -45,7 +47,7 @@ namespace WinFormsApp3
                 labelStatusPerkawinan.Text = $"Status Perkawinan : {bio.Status_perkawinan}";
                 labelPekerjaan.Text = $"Pekerjaan : {bio.Pekerjaan}";
                 labelKewarganegaraan.Text = $"Kewarganegaraan : {bio.Kewarganegaraan}";
-
+                labelAlgoritma.Text = $"Algoritma: {bio.Algoritma}";
 
 
             }
@@ -85,7 +87,7 @@ namespace WinFormsApp3
                         // labelHeaderBiodata.Text = hasil.Item2.Nama;
                         // labelPekerjaan.Text = "ANJING KETEMU";
                         // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
-                        updateLabelBasedOnSearch(hasil.Item1, hasil.Item2, algorithmDropdown.SelectedIndex == 0 ? "KMP" : "BM", timeTaken, 100);
+                        updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
 
                     }
                 }
