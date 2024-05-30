@@ -1,8 +1,3 @@
-
-
-
-
-
 public class BoyerMoore : IBaseAlgorithm
 {
     private readonly int alphabetSize;
@@ -111,19 +106,21 @@ public class BoyerMoore : IBaseAlgorithm
             }
         }
     }
-    public int searchAllRows(List<string> text){
+    public int searchAllRows(List<string> text)
+    {
 
         // for one image
-        int  i = - 1;
-        foreach (string entries in text){
+        int i = -1;
+        foreach (string entries in text)
+        {
             i = this.Search(entries);
-            if (i != -1){
+            if (i != -1)
+            {
                 return i;
             }
         }
         return -1;
     }
-
 }
 
 

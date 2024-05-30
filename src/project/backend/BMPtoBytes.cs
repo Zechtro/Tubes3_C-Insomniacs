@@ -103,7 +103,8 @@ public class BMPToBytes
     public static string GetImagePattern(string filename)
     {
         try
-        {   
+        {
+            // TODO : generate a more surefire way of picking the pattern
             var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
             List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
 

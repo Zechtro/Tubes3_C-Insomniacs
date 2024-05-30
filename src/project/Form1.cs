@@ -5,7 +5,7 @@ namespace WinFormsApp3
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -33,23 +33,18 @@ namespace WinFormsApp3
 
             if (algorithmDropdown != null)
             {
-                if (algorithmDropdown.SelectedIndex == 0)
-                {
-                    // KMP algorithm here
-                }
-                else if (algorithmDropdown.SelectedIndex == 1)
-                {
-
+                if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1){
                     AlgoMaster algo = new AlgoMaster();
                     labelHeaderBiodata.Text = filename;
-                    SidikJari temp = algo.search(filename, 0);
-                    if (temp.berkas_citra == ""){
-                        labelHeaderBiodata.Text = temp.nama;
-                    } else {
-                        labelHeaderBiodata.Text = "KETEMU";
+                    Tuple<Biodata?,SidikJari?> hasil = algo.search(filename, algorithmDropdown.SelectedIndex);
+                    if (hasil.Item1 == null || hasil.Item2 == null)
+                    {
+                        labelHeaderBiodata.Text = "Tidak ketemu";
                     }
-                    // outPicture.Image = Image.FromFile("../../test/100__M_Left_index_finger.bmp");
-
+                    else
+                    {
+                        labelHeaderBiodata.Text = hasil.Item2.Nama;
+                    }
                 }
             }
         }
