@@ -73,13 +73,13 @@ public class Biodata
 {
     public string? NIK { get; set; }
     public string? Nama { get; set; }
-    public string? TempatLahir { get; set; }
-    public string? TanggalLahir { get; set; }
-    public string? JenisKelamin { get; set; }
-    public string? GolonganDarah { get; set; }
+    public string? Tempat_lahir{ get; set; }
+    public string? Tanggal_lahir { get; set; }
+    public string? Jenis_kelamin { get; set; }
+    public string? Golongan_darah { get; set; }
     public string? Alamat { get; set; }
     public string? Agama { get; set; }
-    public string? StatusPerkawinan { get; set; }
+    public string? Status_perkawinan { get; set; }
     public string? Pekerjaan { get; set; }
     public string? Kewarganegaraan { get; set; }
 }

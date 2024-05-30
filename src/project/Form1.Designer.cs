@@ -29,7 +29,8 @@
 
         public void ResetTextLabel()
         {
-            uploadButton.Text = "Upload Image";
+            // uploadButton.Text = "Upload Image";
+            labelHeaderBiodata.Text = "Biodata";
             labelWaktuPencarian.Text = "Waktu Pencarian : xx ms";
             labelPersentaseKecocokan.Text = "Persentase Kecocokan : xx%";
             labelNIK.Text = "NIK : ";
@@ -37,6 +38,7 @@
             labelTempatLahir.Text = "Tempat Lahir : ";
             labelJenisKelamin.Text = "Jenis Kelamin : ";
             labelGolonganDarah.Text = "Golongan Darah : ";
+            labelAlgoritma.Text = "Algoritma: ";
             labelAlamat.Text = "Alamat : ";
             labelAgama.Text = "Agama : ";
             labelStatusPerkawinan.Text = "Status Perkawinan :";

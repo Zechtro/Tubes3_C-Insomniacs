@@ -28,34 +28,64 @@ namespace WinFormsApp3
             }
         }
 
-        private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari, string algoritma, long timeTaken){
-            if (bio  != null){
-                
+        private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari, string algoritma, long timeTaken, double persentase)
+        {
+            labelWaktuPencarian.Text = $"Waktu Pencarian : {timeTaken} ms";
+            labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {persentase}%";
+            labelAlgoritma.Text = $"Algoritma: {algoritma}";
+            
+            if (bio != null)
+            {
+                labelNIK.Text = $"NIK : {bio.NIK}";
+                labelTempatLahir.Text = $"Tempat Lahir: {bio.Tempat_lahir}";
+                labelJenisKelamin.Text = $"Jenis Kelamin : {bio.Jenis_kelamin}";
+                labelGolonganDarah.Text = $"Golongan Darah : {bio.Golongan_darah}";
+                labelAlamat.Text = $"Alamat : {bio.Alamat}";
+                labelAgama.Text = $"Agama : {bio.Agama}";
+                labelStatusPerkawinan.Text = $"Status Perkawinan : {bio.Status_perkawinan}";
+                labelPekerjaan.Text = $"Pekerjaan : {bio.Pekerjaan}";
+                labelKewarganegaraan.Text = $"Kewarganegaraan : {bio.Kewarganegaraan}";
+
+
+
             }
+
+            if (sidikJari != null)
+            {
+                label5.Text = $"Nama : {sidikJari.Nama}";
+                outPicture.ImageLocation = BASEDIR + sidikJari.Berkas_citra;
+            }
+
+
 
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             // logic searching
             Stopwatch stopwatch = new Stopwatch();
-            
+
             string filename = inputPicture.ImageLocation;
             ResetTextLabel();
             if (algorithmDropdown != null)
             {
-                if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1){
+                if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1)
+                {
                     AlgoMaster algo = new AlgoMaster();
-                    labelHeaderBiodata.Text = filename;
-                    Tuple<Biodata?,SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
+                    stopwatch.Start();
+                    Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
+                    stopwatch.Stop();
+                    long timeTaken = stopwatch.ElapsedMilliseconds;
+
                     if (hasil.Item1 == null || hasil.Item2 == null)
                     {
                         labelHeaderBiodata.Text = "Tidak ketemu";
                     }
                     else
                     {
-                        labelHeaderBiodata.Text = hasil.Item2.Nama;
-                        labelPekerjaan.Text = "ANJING KETEMU";
-                        outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
+                        // labelHeaderBiodata.Text = hasil.Item2.Nama;
+                        // labelPekerjaan.Text = "ANJING KETEMU";
+                        // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
+                        updateLabelBasedOnSearch(hasil.Item1, hasil.Item2, algorithmDropdown.SelectedIndex == 0 ? "KMP" : "BM", timeTaken, 100);
 
                     }
                 }
