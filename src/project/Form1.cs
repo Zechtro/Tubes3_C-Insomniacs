@@ -1,10 +1,12 @@
 using System.Xml.Serialization;
 using WinFormsApp3.backend;
+using System.Diagnostics;
 
 namespace WinFormsApp3
 {
     public partial class Form1 : Form
     {
+        const string BASEDIR = "../../";
 
         public Form1()
         {
@@ -26,17 +28,25 @@ namespace WinFormsApp3
             }
         }
 
+        private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari, string algoritma, long timeTaken){
+            if (bio  != null){
+                
+            }
+
+        }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             // logic searching
+            Stopwatch stopwatch = new Stopwatch();
+            
             string filename = inputPicture.ImageLocation;
-
+            ResetTextLabel();
             if (algorithmDropdown != null)
             {
                 if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1){
                     AlgoMaster algo = new AlgoMaster();
                     labelHeaderBiodata.Text = filename;
-                    Tuple<Biodata?,SidikJari?> hasil = algo.search(filename, algorithmDropdown.SelectedIndex);
+                    Tuple<Biodata?,SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
                     if (hasil.Item1 == null || hasil.Item2 == null)
                     {
                         labelHeaderBiodata.Text = "Tidak ketemu";
@@ -44,6 +54,9 @@ namespace WinFormsApp3
                     else
                     {
                         labelHeaderBiodata.Text = hasil.Item2.Nama;
+                        labelPekerjaan.Text = "ANJING KETEMU";
+                        outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
+
                     }
                 }
             }

@@ -106,7 +106,7 @@ public class BoyerMoore : IBaseAlgorithm
             }
         }
     }
-    public int searchAllRows(List<string> text)
+    public int SearchAllRows(List<string> text)
     {
 
         // for one image

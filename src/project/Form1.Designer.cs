@@ -26,6 +26,25 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
+
+        public void ResetTextLabel()
+        {
+            uploadButton.Text = "Upload Image";
+            labelWaktuPencarian.Text = "Waktu Pencarian : xx ms";
+            labelPersentaseKecocokan.Text = "Persentase Kecocokan : xx%";
+            labelNIK.Text = "NIK : ";
+            label5.Text = "Nama : ";
+            labelTempatLahir.Text = "Tempat Lahir : ";
+            labelJenisKelamin.Text = "Jenis Kelamin : ";
+            labelGolonganDarah.Text = "Golongan Darah : ";
+            labelAlamat.Text = "Alamat : ";
+            labelAgama.Text = "Agama : ";
+            labelStatusPerkawinan.Text = "Status Perkawinan :";
+            labelPekerjaan.Text = "Pekerjaan : ";
+            labelKewarganegaraan.Text = "Kewarganegaraan : ";
+            outPicture.ImageLocation = null;
+
+        }
         private void InitializeComponent()
         {
             inputPicture = new PictureBox();
@@ -33,6 +52,7 @@
             uploadButton = new Button();
             buttonSearch = new Button();
             algorithmDropdown = new ComboBox();
+            labelAlgoritma = new Label();
             labelWaktuPencarian = new Label();
             labelPersentaseKecocokan = new Label();
             labelHeaderBiodata = new Label();
@@ -97,11 +117,22 @@
             algorithmDropdown.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             algorithmDropdown.Items.Add("KMP");
             algorithmDropdown.Items.Add("BM");
+
+            // 
+            // label
+            // 
+            labelAlgoritma.AutoSize = true;
+            labelAlgoritma.Location = new Point(507, 289);
+            labelAlgoritma.Name = "labelAlgoritma";
+            labelAlgoritma.Size = new Size(165, 20);
+            labelAlgoritma.TabIndex = 5;
+            labelAlgoritma.Text = "Algoritma: ";
+            labelAlgoritma.Click += label1_Click;
             // 
             // labelWaktuPencarian
             // 
             labelWaktuPencarian.AutoSize = true;
-            labelWaktuPencarian.Location = new Point(507, 289);
+            labelWaktuPencarian.Location = new Point(507, 332);
             labelWaktuPencarian.Name = "labelWaktuPencarian";
             labelWaktuPencarian.Size = new Size(165, 20);
             labelWaktuPencarian.TabIndex = 5;
@@ -111,7 +142,7 @@
             // labelPersentaseKecocokan
             // 
             labelPersentaseKecocokan.AutoSize = true;
-            labelPersentaseKecocokan.Location = new Point(507, 332);
+            labelPersentaseKecocokan.Location = new Point(507, 375);
             labelPersentaseKecocokan.Name = "labelPersentaseKecocokan";
             labelPersentaseKecocokan.Size = new Size(191, 20);
             labelPersentaseKecocokan.TabIndex = 6;
@@ -234,6 +265,7 @@
             Controls.Add(label5);
             Controls.Add(labelNIK);
             Controls.Add(labelHeaderBiodata);
+            Controls.Add(labelAlgoritma);
             Controls.Add(labelPersentaseKecocokan);
             Controls.Add(labelWaktuPencarian);
             Controls.Add(algorithmDropdown);
@@ -284,6 +316,7 @@
         private Label labelStatusPerkawinan;
         private Label labelPekerjaan;
         private Label labelWaktuPencarian;
+        private Label labelAlgoritma;
         private Label labelPersentaseKecocokan;
         private Label labelKewarganegaraan;
         private Button buttonSearch;

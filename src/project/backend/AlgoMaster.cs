@@ -19,7 +19,7 @@ namespace WinFormsApp3.backend
 
         }
 
-        public Tuple<Biodata?, SidikJari?> search(string filename, int algorithmType)
+        public Tuple<Biodata?, SidikJari?> Search(string filename, int algorithmType)
         {
             this.sourcePath = filename;
             // getting pattern from file    
@@ -49,7 +49,7 @@ namespace WinFormsApp3.backend
                 // string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
                 string final = baseDir + sidik.Berkas_citra;
                 List<string> text = BMPToBytes.ConvertBMPToASCII(final); // ascii, row of strings
-                index = this.algorithm.searchAllRows(text);
+                index = this.algorithm.SearchAllRows(text);
                 if (index != -1)
                 {
                     // return sidik;

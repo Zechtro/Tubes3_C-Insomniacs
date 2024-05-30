@@ -91,7 +91,7 @@ namespace WinFormsApp3.backend
         }
 
 
-        public int searchAllRows(List<string> text)
+        public int SearchAllRows(List<string> text)
         {
 
             // for one image

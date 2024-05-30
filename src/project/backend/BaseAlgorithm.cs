@@ -2,5 +2,5 @@ public interface IBaseAlgorithm
 {
     int Search(string text);
 
-    int searchAllRows(List<string> text);
+    int SearchAllRows(List<string> text);
 }
