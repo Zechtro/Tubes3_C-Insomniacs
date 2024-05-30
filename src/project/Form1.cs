@@ -39,16 +39,7 @@ namespace WinFormsApp3
                 }
                 else if (algorithmDropdown.SelectedIndex == 1)
                 {
-                    // BM algorithm here
-                    // string text = "sdflisdfjfklasqeews,kjfajksdf";
-                    // string pattern = "qeew";
-                    // KMPAlgorithm kMPAlgorithm = new KMPAlgorithm(pattern);
 
-                    // int i = kMPAlgorithm.Search(text);
-                    // Console.WriteLine("index: " + i);
-                    // Console.WriteLine("index: " + i);
-                    // Console.WriteLine("index: " + i);
-                    // Console.WriteLine("index: " + i);
                     AlgoMaster algo = new AlgoMaster();
                     labelHeaderBiodata.Text = filename;
                     SidikJari temp = algo.search(filename, 0);
@@ -58,7 +49,6 @@ namespace WinFormsApp3
                         labelHeaderBiodata.Text = "KETEMU";
                     }
                     // outPicture.Image = Image.FromFile("../../test/100__M_Left_index_finger.bmp");
-  
 
                 }
             }
