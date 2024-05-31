@@ -51,6 +51,38 @@ public class SQLiteDataAccess
                 return bio;
             }
         }
+
+        // situation where an exact match of biodata name cannot be found
+        // use LCS 
+        int lcsScore = 0;
+        Biodata? bestMatch = null;
+        LongestCommonSubsequence lcs = new LongestCommonSubsequence(source.Nama.ToLower());
+        foreach (Biodata bio in allBiodata)
+        {
+            if (string.IsNullOrEmpty(bio.Nama))
+            {
+                continue;
+            }
+            else
+            {
+                // normalize 
+                string normalizeName = regex.Normalize(bio.Nama.ToLower());
+                int tempScore = lcs.Search(normalizeName);
+                if (tempScore > lcsScore)
+                {
+                    lcsScore = tempScore;
+                    bestMatch = bio;
+                }
+            }
+        }
+
+        // change the name in sidik jari
+        if (bestMatch != null)
+        {
+            return bestMatch;
+
+        }
+
         return null;
     }
 }
@@ -73,7 +105,7 @@ public class Biodata
 {
     public string? NIK { get; set; }
     public string? Nama { get; set; }
-    public string? Tempat_lahir{ get; set; }
+    public string? Tempat_lahir { get; set; }
     public string? Tanggal_lahir { get; set; }
     public string? Jenis_kelamin { get; set; }
     public string? Golongan_darah { get; set; }
@@ -82,7 +114,7 @@ public class Biodata
     public string? Status_perkawinan { get; set; }
     public string? Pekerjaan { get; set; }
     public string? Kewarganegaraan { get; set; }
-    public string? Algoritma{get; set;}
-    public double? Presentase{get; set;}
-    public long? TimeTaken{get; set;}
+    public string? Algoritma { get; set; }
+    public double? Presentase { get; set; }
+    public long? TimeTaken { get; set; }
 }
