@@ -31,13 +31,6 @@ namespace WinFormsApp3
 
         private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari)
         {
-
-
-
-
-
-
-
             if (bio != null)
             {
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
@@ -49,7 +42,7 @@ namespace WinFormsApp3
                 string strAlamat = Decrypt.decrypt(bio.Alamat);
                 string firstPart = "";
                 string secondPart = "";
-                string thirdPart = ""; // Additional part if needed
+                string thirdPart = "";
 
                 if (strAlamat.Length > 19)
                 {
@@ -65,11 +58,10 @@ namespace WinFormsApp3
 
                     if (secondPart.Length > 19)
                     {
-                        // Find the last space in the second part up to the 19th character
                         int secondSpaceIndex = secondPart.Substring(0, 19).LastIndexOf(' ');
                         if (secondSpaceIndex == -1)
                         {
-                            secondSpaceIndex = 19;  // Split at exactly 19 if no space is found
+                            secondSpaceIndex = 19;
                         }
                         thirdPart = secondPart.Substring(secondSpaceIndex + 1);
                         secondPart = secondPart.Substring(0, secondSpaceIndex);
@@ -77,13 +69,13 @@ namespace WinFormsApp3
 
                     labelAlamat.Text = $"Alamat : {firstPart}";
                     alamatTambahan.Text = secondPart;
-                    alamatTambahan2.Text = thirdPart;  // New label for the additional part
+                    alamatTambahan2.Text = thirdPart;
                 }
                 else
                 {
                     labelAlamat.Text = $"Alamat : {strAlamat}";
-                    alamatTambahan.Text = "";  // Clearing since the address is short
-                    alamatTambahan2.Text = "";  // Clearing since the address is short
+                    alamatTambahan.Text = "";
+                    alamatTambahan2.Text = "";
                 }
                 labelAgama.Text = $"Agama : {Decrypt.decrypt(bio.Agama)}";
                 labelStatusPerkawinan.Text = $"Status Perkawinan : {Decrypt.decrypt(bio.Status_perkawinan)}";
@@ -103,53 +95,6 @@ namespace WinFormsApp3
 
 
         }
-
-
-
-
-
-        // private void buttonSearch_Click(object sender, EventArgs e)
-        // {
-        //     // logic searching
-        //     try
-        //     {
-        //         Stopwatch stopwatch = new Stopwatch();
-
-        //         string filename = inputPicture.ImageLocation;
-        //         ResetTextLabel();
-        //         if (algorithmDropdown != null)
-        //         {
-        //             if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1)
-        //             {
-        //                 AlgoMaster algo = new AlgoMaster();
-        //                 stopwatch.Start();
-        //                 Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
-        //                 stopwatch.Stop();
-        //                 long timeTaken = stopwatch.ElapsedMilliseconds;
-
-        //                 if (hasil.Item1 == null || hasil.Item2 == null)
-        //                 {
-        //                     labelHeaderBiodata.Text = "Tidak ketemu";
-        //                 }
-        //                 else
-        //                 {
-        //                     // labelHeaderBiodata.Text = hasil.Item2.Nama;
-        //                     // labelPekerjaan.Text = "ANJING KETEMU";
-        //                     // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
-        //                     updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
-
-        //                 }
-        //             }
-        //         }
-
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         MessageBox.Show($"An error occurred during the search: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-        //     }
-
-        // }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -271,38 +216,26 @@ namespace WinFormsApp3
         private void buttonSearch_Click_1(object sender, EventArgs e)
         {
             // logic searching
-            Stopwatch stopwatch = new Stopwatch();
 
             string filename = inputPicture.ImageLocation;
             ResetTextLabel();
             if (toggle)
             {
                 AlgoMaster algo = new AlgoMaster();
-                stopwatch.Start();
                 Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, 0);
-                stopwatch.Stop();
-                long timeTaken = stopwatch.ElapsedMilliseconds;
-
                 if (hasil.Item1 == null || hasil.Item2 == null)
                 {
                     labelHeaderBiodata.Text = "Tidak ketemu";
                 }
                 else
                 {
-                    // labelHeaderBiodata.Text = hasil.Item2.Nama;
-                    // labelPekerjaan.Text = "ANJING KETEMU";
-                    // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
                     updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
-
                 }
             }
             else
             {
                 AlgoMaster algo = new AlgoMaster();
-                stopwatch.Start();
                 Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, 1);
-                stopwatch.Stop();
-                long timeTaken = stopwatch.ElapsedMilliseconds;
 
                 if (hasil.Item1 == null || hasil.Item2 == null)
                 {
@@ -310,9 +243,6 @@ namespace WinFormsApp3
                 }
                 else
                 {
-                    // labelHeaderBiodata.Text = hasil.Item2.Nama;
-                    // labelPekerjaan.Text = "ANJING KETEMU";
-                    // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
                     updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
 
                 }
