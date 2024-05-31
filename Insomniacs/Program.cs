@@ -9,8 +9,8 @@ public class Program
     public static void Main()
     {
         const string BASEDIR = "../";
-        // string testSource = "test/83__M_Right_middle_finger.BMP";
-        string testSource = "test/8__M_Right_middle_finger.BMP";
+        string testSource = "test/83__M_Right_middle_finger.BMP";
+        // string testSource = "test/8__M_Right_middle_finger.BMP";
         Image<Rgba32> image  = BMPToBytes.ConvertToBlackAndWhite(BASEDIR + testSource);
         List<string> imageInBinary = BMPToBytes.ConvertImageToBinary(image);
         List<String> asciiForm = BMPToBytes.ConvertBMPToASCII( BASEDIR + testSource);
