@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Insomniacs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec0952849cd9880fc082e3e37e7752b1939033d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b38e904b8e28563a66762da14539bad309152fc9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Insomniacs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Insomniacs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

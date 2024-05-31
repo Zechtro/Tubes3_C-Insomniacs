@@ -1,24 +1,27 @@
+
+
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.IO;
 public class BMPToBytes
 {
-    public static Image<Rgba32> ConvertToBlackAndWhite(string filePath)
+    public static SixLabors.ImageSharp.Image<Rgba32> ConvertToBlackAndWhite(string filePath)
     {
-        Image<Rgba32> image;
+        SixLabors.ImageSharp.Image<Rgba32> image;
+        image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
         try
         {
             // load filePath
-            image = Image.Load<Rgba32>(filePath);
+            image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error loading image: {ex.Message}");
-            throw;
+            throw ex;
         }
 
         // pixels with grayscale value  > 0.5 will be white
@@ -27,10 +30,9 @@ public class BMPToBytes
         return image;
     }
 
-
     public static List<string> ConvertBMPToASCII(string filePath)
     {
-        Image<Rgba32> image =  ConvertToBlackAndWhite(filePath);
+        var image = ConvertToBlackAndWhite(filePath);
         List<string> asciiRows = new List<string>();
         int width = image.Width;
         int height = image.Height;
@@ -59,10 +61,10 @@ public class BMPToBytes
             // Handle any remaining bits (less than 8 bits)
             if (binaryString.Length > 0)
             {
-                // TODO: Find better way of handling binary length less than 8
+                // Pad with zeros if binary length is less than 8
                 while (binaryString.Length < 8)
                 {
-                    binaryString.Append('0'); // Pad with zeros
+                    binaryString.Append('0');
                 }
                 byte b = Convert.ToByte(binaryString.ToString(), 2);
                 rowAscii.Append((char)b);
@@ -74,7 +76,7 @@ public class BMPToBytes
         return asciiRows;
     }
 
-    public static List<string> ConvertImageToBinary(Image<Rgba32> image)
+    public static List<string> ConvertImageToBinary(SixLabors.ImageSharp.Image<Rgba32> image)
     {
         List<string> binaryRows = new List<string>();
         int width = image.Width;
@@ -98,28 +100,20 @@ public class BMPToBytes
         return binaryRows;
     }
 
-    public static string getImagePattern(String filename)
+    public static string GetImagePattern(string filename)
     {
         try
         {
-            Image<Rgba32> blackAndWhiteBMP;
-            blackAndWhiteBMP = BMPToBytes.ConvertToBlackAndWhite(filename);
+            // TODO : generate a more surefire way of picking the pattern
+            var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
+            List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
 
-            List<String> binaryRows = BMPToBytes.ConvertImageToBinary(blackAndWhiteBMP);
-
-            // picking pattern
-            double i = binaryRows.Count * (3.0 / 4.0);
+            // Picking pattern from the 3/4th row of the image
             int pickedRow = (int)Math.Floor(binaryRows.Count * (3.0 / 4.0));
-            Console.WriteLine(pickedRow);
-            Console.WriteLine("COUNT : " + i);
-            foreach (string row in binaryRows)
-            {
-                Console.WriteLine(row);
-            }
             string pattern = binaryRows[pickedRow];
-            // splitting pattern it 8 bits, paddding if needed;
+            Console.WriteLine($"Pattern in row {pickedRow}, binary form: " + pattern);
 
-            Console.WriteLine("ROW PICKED : " + pattern);
+            // Pad the pattern to make its length a multiple of 8
             int paddingLength = 8 - (pattern.Length % 8);
             if (paddingLength != 8)
             {
@@ -133,13 +127,7 @@ public class BMPToBytes
                 segments.Add(segment);
             }
 
-            // determening 64 bits in the center
-            // assuming one row is > 90 bits
-            // TODO : Validation
-            // int totalEntries = segments.Count;
-            // int startIndex = (totalEntries - 8) / 2;
-            // Console.WriteLine("ENTRIES PICKED : ");
-
+            // Determine the 64 bits in the center of the row
             int maxZeros = -1;
             int startIndex = 0;
 
@@ -147,7 +135,7 @@ public class BMPToBytes
             {
                 int zeroCount = 0;
 
-                // Count the number of zeros in the current sequence of 8 entries
+                // Count the number of zeros in the current sequence of 8 segments
                 for (int j = z; j < z + 8; j++)
                 {
                     zeroCount += segments[j].Count(c => c == '0');
@@ -162,27 +150,25 @@ public class BMPToBytes
             }
 
             List<string> result = segments.GetRange(startIndex, 8);
-            string finalPattern = "";
+            Console.Write("Filtered pattern in binary: ");
+            foreach (string res in result){
+                Console.Write(res);
+            }
+            Console.WriteLine();
+            StringBuilder finalPattern = new StringBuilder();
             foreach (string entry in result)
-            {   
+            {
                 int asciiValue = Convert.ToInt32(entry, 2);
                 char asciiCharacter = (char)asciiValue;
-                Console.WriteLine(entry);
-                finalPattern += asciiCharacter;
+                finalPattern.Append(asciiCharacter);
             }
-            Console.WriteLine(finalPattern);
-            return finalPattern;
-   
 
-
-
+            return finalPattern.ToString();
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Something went wrong {e.Message}");
-            return "";
+            Console.WriteLine($"Something went wrong: {e.Message}");
+            throw e;
         }
     }
-
-
 }

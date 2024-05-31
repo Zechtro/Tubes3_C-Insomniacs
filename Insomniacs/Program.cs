@@ -8,29 +8,17 @@ public class Program
 {
     public static void Main()
     {
-
-
-
-        string test = "kajsnd.aladlka.lsfdm.ladsdfasdfnmdfssakjdLKASJDLKAsd";
-        string test2 = "asdkjhdsfglsdfsdfasdfnmdfsasdasdasdadsf";
-        string pattern = "sdfasdfnmdfs";
-        BoyerMoore bm = new BoyerMoore(pattern);
-        KMPAlgorithm kmp = new KMPAlgorithm(pattern);
-
-        int result = bm.Search(test);
-        int result2 = bm.Search(test2);
-        int result3 = kmp.Search(test);
-        int result4 = kmp.Search(test2);
-        if (result != -1)
-        {
-            Console.WriteLine($"Pattern found at index {result}");
-            Console.WriteLine($"Pattern found at index {result2}");
-            Console.WriteLine($"Pattern found at index {result3}");
-            Console.WriteLine($"Pattern found at index {result4}");
+        const string BASEDIR = "../";
+        string testSource = "test/83__M_Right_middle_finger.BMP";
+        Image<Rgba32> image  = BMPToBytes.ConvertToBlackAndWhite(BASEDIR + testSource);
+        List<string> imageInBinary = BMPToBytes.ConvertImageToBinary(image);
+        Console.WriteLine("83__M_Right_middle_finger: ");
+        foreach (string s in imageInBinary ){
+            Console.WriteLine(s);
         }
-        else
-        {
-            Console.WriteLine("Pattern not found");
-        }
+        Console.WriteLine("Image pattern picked");
+        string imagePattern = BMPToBytes.GetImagePattern(BASEDIR + testSource);
+
+        Console.WriteLine(imagePattern.Length);
     }
 }
