@@ -4,8 +4,6 @@ namespace WinFormsApp3.backend
     public class AlgoMaster
     {
 
-        private string sourcePath;
-        private string targetPath;
         private string pattern;
         private IBaseAlgorithm? algorithm;
 
@@ -13,8 +11,6 @@ namespace WinFormsApp3.backend
 
         public AlgoMaster()
         {
-            this.sourcePath = "";
-            this.targetPath = "";
             this.pattern = "";
 
         }
@@ -23,7 +19,6 @@ namespace WinFormsApp3.backend
         {
             Stopwatch stopwatch = new Stopwatch();
 
-            this.sourcePath = filename;
             // getting pattern from file    
             // get necessary data
 
