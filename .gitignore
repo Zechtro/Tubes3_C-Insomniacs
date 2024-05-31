@@ -16,3 +16,5 @@
 # Ignore Rider project files
 .idea/
 *.sln.iml
+
+.vs/

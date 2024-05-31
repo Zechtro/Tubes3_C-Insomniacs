@@ -49,11 +49,7 @@
         }
         private void InitializeComponent()
         {
-            inputPicture = new PictureBox();
-            outPicture = new PictureBox();
-            uploadButton = new Button();
-            buttonSearch = new Button();
-            algorithmDropdown = new ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             labelAlgoritma = new Label();
             labelWaktuPencarian = new Label();
             labelPersentaseKecocokan = new Label();
@@ -68,65 +64,33 @@
             labelStatusPerkawinan = new Label();
             labelPekerjaan = new Label();
             labelKewarganegaraan = new Label();
+            roundBorderPanel1 = new SrcTree.RoundBorderPanel();
+            roundedButton2 = new CustomControls.RoundedButton.RoundedButton();
+            panel1 = new Panel();
+            label14 = new Label();
+            methodToggle = new CustomControls.ToggleButton.ToggleButton();
+            label1 = new Label();
+            buttonSearch = new CustomControls.RoundedButton.RoundedButton();
+            inputPicture = new RoundPictureBox();
+            roundBorderPanel2 = new SrcTree.RoundBorderPanel();
+            outPicture = new RoundPictureBox();
+            verticalLabel1 = new VerticalLabel();
+            roundBorderPanel3 = new SrcTree.RoundBorderPanel();
+            roundBorderPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inputPicture).BeginInit();
+            roundBorderPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)outPicture).BeginInit();
+            roundBorderPanel3.SuspendLayout();
             SuspendLayout();
             // 
-            // inputPicture
-            // 
-            inputPicture.Location = new Point(49, 34);
-            inputPicture.Name = "inputPicture";
-            inputPicture.Size = new Size(163, 233);
-            inputPicture.TabIndex = 0;
-            inputPicture.TabStop = false;
-            // 
-            // outPicture
-            // 
-            outPicture.Location = new Point(304, 34);
-            outPicture.Name = "outPicture";
-            outPicture.Size = new Size(163, 233);
-            outPicture.TabIndex = 1;
-            outPicture.TabStop = false;
-            outPicture.Click += pictureBox2_Click;
-            // 
-            // uploadButton
-            // 
-            uploadButton.Location = new Point(61, 311);
-            uploadButton.Name = "uploadButton";
-            uploadButton.Size = new Size(139, 29);
-            uploadButton.TabIndex = 2;
-            uploadButton.Text = "Upload Image";
-            uploadButton.UseVisualStyleBackColor = true;
-            uploadButton.Click += button1_Click;
-            // 
-            // buttonSearch
-            // 
-            buttonSearch.Location = new Point(340, 354);
-            buttonSearch.Name = "buttonSearch";
-            buttonSearch.Size = new Size(94, 29);
-            buttonSearch.TabIndex = 3;
-            buttonSearch.Text = "SEARCH!";
-            buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += buttonSearch_Click;
-            // 
-            // algorithmDropdown
-            // 
-            algorithmDropdown.FormattingEnabled = true;
-            algorithmDropdown.Location = new Point(304, 311);
-            algorithmDropdown.Name = "algorithmDropdown";
-            algorithmDropdown.Size = new Size(163, 28);
-            algorithmDropdown.TabIndex = 4;
-            algorithmDropdown.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            algorithmDropdown.Items.Add("KMP");
-            algorithmDropdown.Items.Add("BM");
-
-            // 
-            // label
+            // labelAlgoritma
             // 
             labelAlgoritma.AutoSize = true;
-            labelAlgoritma.Location = new Point(507, 289);
+            labelAlgoritma.Font = new Font("Segoe UI", 15F);
+            labelAlgoritma.Location = new Point(29, 25);
             labelAlgoritma.Name = "labelAlgoritma";
-            labelAlgoritma.Size = new Size(165, 20);
+            labelAlgoritma.Size = new Size(137, 35);
             labelAlgoritma.TabIndex = 5;
             labelAlgoritma.Text = "Algoritma: ";
             labelAlgoritma.Click += label1_Click;
@@ -134,27 +98,29 @@
             // labelWaktuPencarian
             // 
             labelWaktuPencarian.AutoSize = true;
-            labelWaktuPencarian.Location = new Point(507, 332);
+            labelWaktuPencarian.Font = new Font("Segoe UI", 15F);
+            labelWaktuPencarian.Location = new Point(25, 74);
             labelWaktuPencarian.Name = "labelWaktuPencarian";
-            labelWaktuPencarian.Size = new Size(165, 20);
+            labelWaktuPencarian.Size = new Size(210, 35);
             labelWaktuPencarian.TabIndex = 5;
-            labelWaktuPencarian.Text = "Waktu Pencarian : xx ms";
+            labelWaktuPencarian.Text = "Waktu Pencarian :";
             labelWaktuPencarian.Click += label1_Click;
             // 
             // labelPersentaseKecocokan
             // 
             labelPersentaseKecocokan.AutoSize = true;
-            labelPersentaseKecocokan.Location = new Point(507, 375);
+            labelPersentaseKecocokan.Font = new Font("Segoe UI", 15F);
+            labelPersentaseKecocokan.Location = new Point(19, 124);
             labelPersentaseKecocokan.Name = "labelPersentaseKecocokan";
-            labelPersentaseKecocokan.Size = new Size(191, 20);
+            labelPersentaseKecocokan.Size = new Size(273, 35);
             labelPersentaseKecocokan.TabIndex = 6;
-            labelPersentaseKecocokan.Text = "Persentase Kecocokan : xx%";
+            labelPersentaseKecocokan.Text = "Persentase Kecocokan :";
             labelPersentaseKecocokan.Click += label2_Click;
             // 
             // labelHeaderBiodata
             // 
             labelHeaderBiodata.AutoSize = true;
-            labelHeaderBiodata.Location = new Point(610, 34);
+            labelHeaderBiodata.Location = new Point(317, 47);
             labelHeaderBiodata.Name = "labelHeaderBiodata";
             labelHeaderBiodata.Size = new Size(61, 20);
             labelHeaderBiodata.TabIndex = 7;
@@ -163,16 +129,19 @@
             // labelNIK
             // 
             labelNIK.AutoSize = true;
-            labelNIK.Location = new Point(507, 58);
+            labelNIK.BackColor = Color.Transparent;
+            labelNIK.Location = new Point(269, 80);
             labelNIK.Name = "labelNIK";
             labelNIK.Size = new Size(44, 20);
             labelNIK.TabIndex = 8;
             labelNIK.Text = "NIK : ";
+            labelNIK.Click += labelNIK_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(507, 78);
+            label5.FlatStyle = FlatStyle.Flat;
+            label5.Location = new Point(269, 100);
             label5.Name = "label5";
             label5.Size = new Size(60, 20);
             label5.TabIndex = 9;
@@ -181,7 +150,9 @@
             // labelTempatLahir
             // 
             labelTempatLahir.AutoSize = true;
-            labelTempatLahir.Location = new Point(507, 98);
+            labelTempatLahir.BackColor = Color.Transparent;
+            labelTempatLahir.FlatStyle = FlatStyle.Flat;
+            labelTempatLahir.Location = new Point(269, 120);
             labelTempatLahir.Name = "labelTempatLahir";
             labelTempatLahir.Size = new Size(106, 20);
             labelTempatLahir.TabIndex = 10;
@@ -190,7 +161,9 @@
             // labelJenisKelamin
             // 
             labelJenisKelamin.AutoSize = true;
-            labelJenisKelamin.Location = new Point(507, 118);
+            labelJenisKelamin.BackColor = Color.Transparent;
+            labelJenisKelamin.FlatStyle = FlatStyle.Flat;
+            labelJenisKelamin.Location = new Point(269, 140);
             labelJenisKelamin.Name = "labelJenisKelamin";
             labelJenisKelamin.Size = new Size(109, 20);
             labelJenisKelamin.TabIndex = 11;
@@ -199,7 +172,8 @@
             // labelGolonganDarah
             // 
             labelGolonganDarah.AutoSize = true;
-            labelGolonganDarah.Location = new Point(507, 138);
+            labelGolonganDarah.BackColor = Color.Transparent;
+            labelGolonganDarah.Location = new Point(269, 160);
             labelGolonganDarah.Name = "labelGolonganDarah";
             labelGolonganDarah.Size = new Size(129, 20);
             labelGolonganDarah.TabIndex = 12;
@@ -209,7 +183,9 @@
             // labelAlamat
             // 
             labelAlamat.AutoSize = true;
-            labelAlamat.Location = new Point(507, 158);
+            labelAlamat.BackColor = Color.Transparent;
+            labelAlamat.FlatStyle = FlatStyle.Flat;
+            labelAlamat.Location = new Point(269, 180);
             labelAlamat.Name = "labelAlamat";
             labelAlamat.Size = new Size(68, 20);
             labelAlamat.TabIndex = 13;
@@ -218,7 +194,9 @@
             // labelAgama
             // 
             labelAgama.AutoSize = true;
-            labelAgama.Location = new Point(507, 178);
+            labelAgama.BackColor = Color.Transparent;
+            labelAgama.FlatStyle = FlatStyle.Flat;
+            labelAgama.Location = new Point(269, 200);
             labelAgama.Name = "labelAgama";
             labelAgama.Size = new Size(68, 20);
             labelAgama.TabIndex = 14;
@@ -227,7 +205,9 @@
             // labelStatusPerkawinan
             // 
             labelStatusPerkawinan.AutoSize = true;
-            labelStatusPerkawinan.Location = new Point(507, 198);
+            labelStatusPerkawinan.BackColor = Color.Transparent;
+            labelStatusPerkawinan.FlatStyle = FlatStyle.Flat;
+            labelStatusPerkawinan.Location = new Point(269, 220);
             labelStatusPerkawinan.Name = "labelStatusPerkawinan";
             labelStatusPerkawinan.Size = new Size(134, 20);
             labelStatusPerkawinan.TabIndex = 15;
@@ -236,64 +216,231 @@
             // labelPekerjaan
             // 
             labelPekerjaan.AutoSize = true;
-            labelPekerjaan.Location = new Point(507, 218);
+            labelPekerjaan.BackColor = Color.Transparent;
+            labelPekerjaan.FlatStyle = FlatStyle.Flat;
+            labelPekerjaan.Location = new Point(269, 240);
             labelPekerjaan.Name = "labelPekerjaan";
             labelPekerjaan.Size = new Size(83, 20);
             labelPekerjaan.TabIndex = 16;
             labelPekerjaan.Text = "Pekerjaan : ";
+            labelPekerjaan.Click += labelPekerjaan_Click;
             // 
             // labelKewarganegaraan
             // 
             labelKewarganegaraan.AutoSize = true;
-            labelKewarganegaraan.Location = new Point(507, 238);
+            labelKewarganegaraan.BackColor = Color.Transparent;
+            labelKewarganegaraan.FlatStyle = FlatStyle.Flat;
+            labelKewarganegaraan.Location = new Point(269, 260);
             labelKewarganegaraan.Name = "labelKewarganegaraan";
             labelKewarganegaraan.Size = new Size(140, 20);
             labelKewarganegaraan.TabIndex = 17;
             labelKewarganegaraan.Text = "Kewarganegaraan : ";
             // 
+            // roundBorderPanel1
+            // 
+            roundBorderPanel1.BackColor = Color.Transparent;
+            roundBorderPanel1.Controls.Add(roundedButton2);
+            roundBorderPanel1.Controls.Add(panel1);
+            roundBorderPanel1.Controls.Add(buttonSearch);
+            roundBorderPanel1.Controls.Add(inputPicture);
+            roundBorderPanel1.Location = new Point(102, 49);
+            roundBorderPanel1.Name = "roundBorderPanel1";
+            roundBorderPanel1.Size = new Size(337, 612);
+            roundBorderPanel1.TabIndex = 0;
+            // 
+            // roundedButton2
+            // 
+            roundedButton2.BackColor = SystemColors.ButtonFace;
+            roundedButton2.BackgroundColor = SystemColors.ButtonFace;
+            roundedButton2.BorderColor = Color.Black;
+            roundedButton2.BorderRadius = 30;
+            roundedButton2.BorderSize = 4;
+            roundedButton2.FlatAppearance.BorderSize = 0;
+            roundedButton2.FlatStyle = FlatStyle.Flat;
+            roundedButton2.Font = new Font("Segoe UI", 15F);
+            roundedButton2.ForeColor = Color.Black;
+            roundedButton2.Location = new Point(63, 326);
+            roundedButton2.Name = "roundedButton2";
+            roundedButton2.Size = new Size(211, 60);
+            roundedButton2.TabIndex = 25;
+            roundedButton2.Text = "Upload Image";
+            roundedButton2.TextColor = Color.Black;
+            roundedButton2.UseVisualStyleBackColor = false;
+            roundedButton2.Click += roundedButton2_Click_1;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Black;
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(methodToggle);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(36, 411);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(265, 69);
+            panel1.TabIndex = 23;
+            panel1.Paint += panel1_Paint_2;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 12F);
+            label14.ForeColor = Color.White;
+            label14.Location = new Point(190, 16);
+            label14.Name = "label14";
+            label14.Size = new Size(53, 28);
+            label14.TabIndex = 21;
+            label14.Text = "KMP";
+            label14.Click += label14_Click_1;
+            // 
+            // methodToggle
+            // 
+            methodToggle.BackColor = SystemColors.Control;
+            methodToggle.Location = new Point(67, 13);
+            methodToggle.MinimumSize = new Size(45, 22);
+            methodToggle.Name = "methodToggle";
+            methodToggle.OffBackColor = Color.Gray;
+            methodToggle.OffToggleColor = Color.WhiteSmoke;
+            methodToggle.OnBackColor = Color.Gray;
+            methodToggle.OnToggleColor = Color.WhiteSmoke;
+            methodToggle.Size = new Size(117, 43);
+            methodToggle.TabIndex = 23;
+            methodToggle.UseVisualStyleBackColor = false;
+            methodToggle.CheckedChanged += methodToggle_CheckedChanged_1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(20, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(41, 28);
+            label1.TabIndex = 23;
+            label1.Text = "BM";
+            // 
+            // buttonSearch
+            // 
+            buttonSearch.BackColor = SystemColors.ButtonFace;
+            buttonSearch.BackgroundColor = SystemColors.ButtonFace;
+            buttonSearch.BorderColor = Color.Black;
+            buttonSearch.BorderRadius = 30;
+            buttonSearch.BorderSize = 4;
+            buttonSearch.FlatAppearance.BorderSize = 0;
+            buttonSearch.FlatStyle = FlatStyle.Flat;
+            buttonSearch.Font = new Font("Segoe UI", 15F);
+            buttonSearch.ForeColor = Color.Black;
+            buttonSearch.Location = new Point(63, 510);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new Size(211, 60);
+            buttonSearch.TabIndex = 24;
+            buttonSearch.Text = "Search";
+            buttonSearch.TextColor = Color.Black;
+            buttonSearch.UseVisualStyleBackColor = false;
+            buttonSearch.Click += buttonSearch_Click_1;
+            // 
+            // inputPicture
+            // 
+            inputPicture.BackColor = Color.White;
+            inputPicture.BackgroundImageLayout = ImageLayout.Center;
+            inputPicture.BorderStyle = BorderStyle.FixedSingle;
+            inputPicture.CornerRadius = 20;
+            inputPicture.Image = (Image)resources.GetObject("inputPicture.Image");
+            inputPicture.InitialImage = (Image)resources.GetObject("inputPicture.InitialImage");
+            inputPicture.Location = new Point(88, 76);
+            inputPicture.Name = "inputPicture";
+            inputPicture.Size = new Size(166, 202);
+            inputPicture.TabIndex = 19;
+            inputPicture.TabStop = false;
+            inputPicture.Click += inputPicture_Click_1;
+            // 
+            // roundBorderPanel2
+            // 
+            roundBorderPanel2.BackColor = Color.Transparent;
+            roundBorderPanel2.Controls.Add(outPicture);
+            roundBorderPanel2.Controls.Add(labelNIK);
+            roundBorderPanel2.Controls.Add(labelHeaderBiodata);
+            roundBorderPanel2.Controls.Add(label5);
+            roundBorderPanel2.Controls.Add(labelKewarganegaraan);
+            roundBorderPanel2.Controls.Add(labelTempatLahir);
+            roundBorderPanel2.Controls.Add(labelPekerjaan);
+            roundBorderPanel2.Controls.Add(labelJenisKelamin);
+            roundBorderPanel2.Controls.Add(labelStatusPerkawinan);
+            roundBorderPanel2.Controls.Add(labelGolonganDarah);
+            roundBorderPanel2.Controls.Add(labelAgama);
+            roundBorderPanel2.Controls.Add(labelAlamat);
+            roundBorderPanel2.Location = new Point(494, 49);
+            roundBorderPanel2.Name = "roundBorderPanel2";
+            roundBorderPanel2.Size = new Size(542, 369);
+            roundBorderPanel2.TabIndex = 21;
+            roundBorderPanel2.Paint += roundBorderPanel2_Paint;
+            // 
+            // outPicture
+            // 
+            outPicture.BackColor = Color.White;
+            outPicture.BackgroundImageLayout = ImageLayout.Center;
+            outPicture.BorderStyle = BorderStyle.FixedSingle;
+            outPicture.CornerRadius = 20;
+            outPicture.Image = (Image)resources.GetObject("outPicture.Image");
+            outPicture.Location = new Point(41, 47);
+            outPicture.Name = "outPicture";
+            outPicture.Size = new Size(199, 264);
+            outPicture.TabIndex = 20;
+            outPicture.TabStop = false;
+            outPicture.Click += outPicture_Click;
+            // 
+            // verticalLabel1
+            // 
+            verticalLabel1.BackColor = Color.Transparent;
+            verticalLabel1.Flip180 = true;
+            verticalLabel1.Font = new Font("Segoe UI", 30F);
+            verticalLabel1.ForeColor = Color.White;
+            verticalLabel1.Location = new Point(12, 83);
+            verticalLabel1.Name = "verticalLabel1";
+            verticalLabel1.Size = new Size(84, 476);
+            verticalLabel1.TabIndex = 22;
+            verticalLabel1.Text = "C# INSOMNIACS";
+            // 
+            // roundBorderPanel3
+            // 
+            roundBorderPanel3.BackColor = Color.Transparent;
+            roundBorderPanel3.Controls.Add(labelAlgoritma);
+            roundBorderPanel3.Controls.Add(labelWaktuPencarian);
+            roundBorderPanel3.Controls.Add(labelPersentaseKecocokan);
+            roundBorderPanel3.Location = new Point(589, 431);
+            roundBorderPanel3.Name = "roundBorderPanel3";
+            roundBorderPanel3.Size = new Size(359, 200);
+            roundBorderPanel3.TabIndex = 23;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(labelKewarganegaraan);
-            Controls.Add(labelPekerjaan);
-            Controls.Add(labelStatusPerkawinan);
-            Controls.Add(labelAgama);
-            Controls.Add(labelAlamat);
-            Controls.Add(labelGolonganDarah);
-            Controls.Add(labelJenisKelamin);
-            Controls.Add(labelTempatLahir);
-            Controls.Add(label5);
-            Controls.Add(labelNIK);
-            Controls.Add(labelHeaderBiodata);
-            Controls.Add(labelAlgoritma);
-            Controls.Add(labelPersentaseKecocokan);
-            Controls.Add(labelWaktuPencarian);
-            Controls.Add(algorithmDropdown);
-            Controls.Add(buttonSearch);
-            Controls.Add(uploadButton);
-            Controls.Add(outPicture);
-            Controls.Add(inputPicture);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1062, 673);
+            Controls.Add(roundBorderPanel3);
+            Controls.Add(verticalLabel1);
+            Controls.Add(roundBorderPanel2);
+            Controls.Add(roundBorderPanel1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            roundBorderPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)inputPicture).EndInit();
+            roundBorderPanel2.ResumeLayout(false);
+            roundBorderPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)outPicture).EndInit();
+            roundBorderPanel3.ResumeLayout(false);
+            roundBorderPanel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private Button button1;
         private Button button2;
         private ComboBox comboBox1;
         private Label label1;
-        private Label label2;
-        private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -304,10 +451,6 @@
         private Label label11;
         private Label label12;
         private Label label13;
-        private PictureBox inputPicture;
-        private PictureBox outPicture;
-        private Button uploadButton;
-        private ComboBox algorithmDropdown;
         private Label labelHeaderBiodata;
         private Label labelNIK;
         private Label labelTempatLahir;
@@ -321,6 +464,17 @@
         private Label labelAlgoritma;
         private Label labelPersentaseKecocokan;
         private Label labelKewarganegaraan;
-        private Button buttonSearch;
+        private SrcTree.RoundBorderPanel roundBorderPanel1;
+        private RoundPictureBox inputPicture;
+        private SrcTree.RoundBorderPanel roundBorderPanel2;
+        private CustomControls.ToggleButton.ToggleButton methodToggle;
+        private RoundPictureBox outPicture;
+        private VerticalLabel teamTitle;
+        private VerticalLabel verticalLabel1;
+        private CustomControls.RoundedButton.RoundedButton buttonSearch;
+        private Label label14;
+        private Panel panel1;
+        private SrcTree.RoundBorderPanel roundBorderPanel3;
+        private CustomControls.RoundedButton.RoundedButton roundedButton2;
     }
 }
