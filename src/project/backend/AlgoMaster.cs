@@ -75,7 +75,7 @@ namespace WinFormsApp3.backend
 
             // use LCS
 
-            return lcs.SearchBestMatch(sqlData,allSidikJari);
+            return lcs.SearchBestMatch(sqlData, allSidikJari);
 
         }
     }

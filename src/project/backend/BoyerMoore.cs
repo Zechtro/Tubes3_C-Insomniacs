@@ -1,6 +1,6 @@
 public class BoyerMoore : IBaseAlgorithm
 {
-    private readonly int alphabetSize;
+    private readonly int alphabetSize; // default 256
     private readonly int[] badCharacterShift;
     private readonly int[] goodSuffixShift;
     private readonly int[] borderPositions;
@@ -40,17 +40,21 @@ public class BoyerMoore : IBaseAlgorithm
             // Scan from right to left
             int patternIndex = this.pattern.Length - 1;
 
+            // keep mmoving left if still matches
             while (patternIndex >= 0 && this.pattern[patternIndex] == textArray[textIndex + patternIndex])
             {
                 patternIndex--;
             }
 
+            // found a match
             if (patternIndex < 0)
             {
                 return textIndex;
             }
+            // make a jump/shift
             else
             {
+                // determining which shift to use
                 int badCharacterShiftAmount = patternIndex - this.badCharacterShift[textArray[textIndex + patternIndex]];
                 int goodSuffixShiftAmount = this.goodSuffixShift[patternIndex + 1];
                 textIndex += Math.Max(goodSuffixShiftAmount, badCharacterShiftAmount);
@@ -66,6 +70,7 @@ public class BoyerMoore : IBaseAlgorithm
         Array.Fill(this.badCharacterShift, -1);
 
         // fill array badCharacterShift 
+        // fill it based on the last occurrence of a character in the pattern 
         for (int i = 0; i < pattern.Length; i++)
         {
             this.badCharacterShift[pattern[i]] = i;
@@ -78,15 +83,23 @@ public class BoyerMoore : IBaseAlgorithm
         int i = m;
         int j = m + 1;
 
-        borderPositions[i] = j;
+        // for borderPosition[k], it stores the location of the suffix in the substring pattern[k, pattern.length - 1 ] where that suffix is also the prefix
+        borderPositions[i] = j; // consider that pattern[pattern]
+
+        //note : pattern[m] acts as the "∅", which means borderPosition[k] = m  means that there are no suffix in pattern[k,pattern.Length - 1] which is also a prefix for substring pattern[k, pattern.Length -1]
+
         while (i > 0)
         {
             while (j <= m && pattern[i - 1] != pattern[j - 1])
             {
+
                 if (goodSuffixShift[j] == 0)
                 {
+                    // stores shift
                     goodSuffixShift[j] = j - i;
                 }
+
+                // find the next longest prefix which is also a suffix of pattern[i,pattern.Length - 1]
                 j = borderPositions[j];
             }
             i--;
@@ -98,6 +111,8 @@ public class BoyerMoore : IBaseAlgorithm
     {
         int m = pattern.Length;
         int i, j = borderPositions[0];
+
+        // fill uninitialized slots in goodSuffixShift
         for (i = 0; i <= m; i++)
         {
             if (goodSuffixShift[i] == 0)
