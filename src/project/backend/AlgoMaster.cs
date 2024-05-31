@@ -4,8 +4,6 @@ namespace WinFormsApp3.backend
     public class AlgoMaster
     {
 
-        private string sourcePath;
-        private string targetPath;
         private string pattern;
         private IBaseAlgorithm? algorithm;
 
@@ -13,8 +11,6 @@ namespace WinFormsApp3.backend
 
         public AlgoMaster()
         {
-            this.sourcePath = "";
-            this.targetPath = "";
             this.pattern = "";
 
         }
@@ -23,13 +19,9 @@ namespace WinFormsApp3.backend
         {
             Stopwatch stopwatch = new Stopwatch();
 
-            this.sourcePath = filename;
             // getting pattern from file    
             // get necessary data
 
-            // "..\\..\\test\\100__M_Left_index_finger.bmp"
-            //../../test/100__M_Left_index_finger.bmp
-            // string transformedPath = $"../../{originalPath}"
             this.pattern = BMPToBytes.GetImagePattern(filename);
             SQLiteDataAccess sqlData = new SQLiteDataAccess();
             List<SidikJari> allSidikJari = sqlData.GetSidikJari();
@@ -49,8 +41,6 @@ namespace WinFormsApp3.backend
             foreach (SidikJari sidik in allSidikJari)
             {
 
-                // // string what  = "../../../test/100__M_Left_index_finger"
-                // string baseDir = @"D:/SMS 4/Strategi ALgoritma/Tubes3Insomniacs/";
                 string final = baseDir + sidik.Berkas_citra;
                 List<string> text = BMPToBytes.ConvertBMPToASCII(final); // ascii, row of strings
                 index = this.algorithm.SearchAllRows(text);
@@ -80,7 +70,7 @@ namespace WinFormsApp3.backend
 
             // use LCS
 
-            return lcs.SearchBestMatch(sqlData,allSidikJari);
+            return lcs.SearchBestMatch(sqlData, allSidikJari);
 
         }
     }

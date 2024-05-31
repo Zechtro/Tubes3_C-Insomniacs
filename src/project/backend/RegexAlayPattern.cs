@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 public class RegexAlayPattern
 {
     private Dictionary<char, string> leetMap;
+    private Dictionary<char, char> reverseLeetMap;
     private string regexPattern;
 
     public RegexAlayPattern()
@@ -15,6 +16,12 @@ public class RegexAlayPattern
             { 'a', "4@" }, { 'e', "3" }, { 'i', "1!|" }, { 'o', "0" }, { 'u', "" },
             { 's', "$5" }, { 't', "7+" }, { 'l', "1|" }, { 'z', "2" }, { 'g', "6" }
         };
+        reverseLeetMap = new Dictionary<char, char>
+        {
+            { '4', 'a' }, { '@', 'a' }, { '3', 'e' }, { '1', 'i' }, { '!', 'i' },
+            { '|', 'i' }, { '0', 'o' }, { '$', 's' }, { '5', 's' }, { '7', 't' },
+            { '+', 't' }, { '2', 'z' }, { '6', 'g' }
+        };
         regexPattern = "";
     }
 
@@ -23,13 +30,10 @@ public class RegexAlayPattern
         StringBuilder patternBuilder = new StringBuilder();
         foreach (char c in baseString.ToLower())
         {
-            // Periksa apakah bisa diubah menjadi angka
             if (leetMap.ContainsKey(c))
             {
-                // Periksa apakah vowel
                 if ("aeiou".IndexOf(c) >= 0)
                 {
-                    // Jika vowel maka dibuat opsional
                     patternBuilder.Append('[');
                     patternBuilder.Append(c);
                     foreach (char leetChar in leetMap[c])
@@ -40,7 +44,6 @@ public class RegexAlayPattern
                 }
                 else
                 {
-                    // Jika non-vowel wajib
                     patternBuilder.Append('[');
                     patternBuilder.Append(c);
                     foreach (char leetChar in leetMap[c])
@@ -52,7 +55,6 @@ public class RegexAlayPattern
             }
             else
             {
-                // Selain itu tampilkan sebagai literal wajib
                 patternBuilder.Append(Regex.Escape(c.ToString()));
             }
         }
@@ -61,12 +63,28 @@ public class RegexAlayPattern
 
     public bool IsMatch(string input)
     {
-        // dibuat case insensitive disini
         return Regex.IsMatch(input.ToLower(), regexPattern);
     }
 
     public string GetPattern()
     {
         return regexPattern;
+    }
+
+    public string Normalize(string input)
+    {
+        StringBuilder normalizedText = new StringBuilder();
+        foreach (char c in input)
+        {
+            if (reverseLeetMap.ContainsKey(c))
+            {
+                normalizedText.Append(reverseLeetMap[c]);
+            }
+            else
+            {
+                normalizedText.Append(c);
+            }
+        }
+        return normalizedText.ToString().ToLower();
     }
 }

@@ -35,19 +35,22 @@ namespace WinFormsApp3
 
 
 
+
+
+
             if (bio != null)
             {
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
-                labelNIK.Text = $"NIK : {bio.NIK}";
+                labelNIK.Text = $"NIK : {Decrypt.decrypt(bio.NIK)}";
                 labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {bio.Presentase}%";
-                labelTempatLahir.Text = $"Tempat Lahir: {bio.Tempat_lahir}";
-                labelJenisKelamin.Text = $"Jenis Kelamin : {bio.Jenis_kelamin}";
-                labelGolonganDarah.Text = $"Golongan Darah : {bio.Golongan_darah}";
-                labelAlamat.Text = $"Alamat : {bio.Alamat}";
-                labelAgama.Text = $"Agama : {bio.Agama}";
-                labelStatusPerkawinan.Text = $"Status Perkawinan : {bio.Status_perkawinan}";
-                labelPekerjaan.Text = $"Pekerjaan : {bio.Pekerjaan}";
-                labelKewarganegaraan.Text = $"Kewarganegaraan : {bio.Kewarganegaraan}";
+                labelTempatLahir.Text = $"Tempat Lahir: {Decrypt.decrypt(bio.Tempat_lahir)}";
+                labelJenisKelamin.Text = $"Jenis Kelamin : {Decrypt.decrypt(bio.Jenis_kelamin)}";
+                labelGolonganDarah.Text = $"Golongan Darah : {Decrypt.decrypt(bio.Golongan_darah)}";
+                labelAlamat.Text = $"Alamat : {Decrypt.decrypt(bio.Alamat)}";
+                labelAgama.Text = $"Agama : {Decrypt.decrypt(bio.Agama)}";
+                labelStatusPerkawinan.Text = $"Status Perkawinan : {Decrypt.decrypt(bio.Status_perkawinan)}";
+                labelPekerjaan.Text = $"Pekerjaan : {Decrypt.decrypt(bio.Pekerjaan)}";
+                labelKewarganegaraan.Text = $"Kewarganegaraan : {Decrypt.decrypt(bio.Kewarganegaraan)}";
                 labelAlgoritma.Text = $"Algoritma: {bio.Algoritma}";
 
 
@@ -63,6 +66,52 @@ namespace WinFormsApp3
 
         }
 
+
+
+
+
+        // private void buttonSearch_Click(object sender, EventArgs e)
+        // {
+        //     // logic searching
+        //     try
+        //     {
+        //         Stopwatch stopwatch = new Stopwatch();
+
+        //         string filename = inputPicture.ImageLocation;
+        //         ResetTextLabel();
+        //         if (algorithmDropdown != null)
+        //         {
+        //             if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1)
+        //             {
+        //                 AlgoMaster algo = new AlgoMaster();
+        //                 stopwatch.Start();
+        //                 Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
+        //                 stopwatch.Stop();
+        //                 long timeTaken = stopwatch.ElapsedMilliseconds;
+
+        //                 if (hasil.Item1 == null || hasil.Item2 == null)
+        //                 {
+        //                     labelHeaderBiodata.Text = "Tidak ketemu";
+        //                 }
+        //                 else
+        //                 {
+        //                     // labelHeaderBiodata.Text = hasil.Item2.Nama;
+        //                     // labelPekerjaan.Text = "ANJING KETEMU";
+        //                     // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
+        //                     updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
+
+        //                 }
+        //             }
+        //         }
+
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         MessageBox.Show($"An error occurred during the search: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        //     }
+
+        // }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {

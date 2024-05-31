@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\GUI\\bin",
+    "\\src\\GUI\\bin\\Release",
+    "\\src\\GUI\\obj\\Debug\\net8.0-windows\\ref",
+    "\\src\\GUI\\obj\\Debug\\net8.0-windows\\refint",
+    "\\src\\GUI\\obj\\Release\\net8.0-windows",
+    "\\src\\GUI\\obj\\Release\\net8.0-windows\\ref"
+  ],
+  "SelectedNode": "\\src",
+  "PreviewInSolutionExplorer": false
+}
