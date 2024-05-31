@@ -151,7 +151,8 @@ public class BMPToBytes
 
             List<string> result = segments.GetRange(startIndex, 8);
             Console.Write("Filtered pattern in binary: ");
-            foreach (string res in result){
+            foreach (string res in result)
+            {
                 Console.Write(res);
             }
             Console.WriteLine();
