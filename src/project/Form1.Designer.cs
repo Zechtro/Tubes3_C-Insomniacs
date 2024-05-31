@@ -45,6 +45,7 @@
             labelPekerjaan.Text = "Pekerjaan : ";
             labelKewarganegaraan.Text = "Kewarganegaraan : ";
             outPicture.ImageLocation = null;
+            alamatTambahan.Text = "";
 
         }
         private void InitializeComponent()
@@ -73,6 +74,8 @@
             buttonSearch = new CustomControls.RoundedButton.RoundedButton();
             inputPicture = new RoundPictureBox();
             roundBorderPanel2 = new SrcTree.RoundBorderPanel();
+            alamatTambahan2 = new Label();
+            alamatTambahan = new Label();
             outPicture = new RoundPictureBox();
             verticalLabel1 = new VerticalLabel();
             roundBorderPanel3 = new SrcTree.RoundBorderPanel();
@@ -99,7 +102,7 @@
             // 
             labelWaktuPencarian.AutoSize = true;
             labelWaktuPencarian.Font = new Font("Segoe UI", 15F);
-            labelWaktuPencarian.Location = new Point(25, 74);
+            labelWaktuPencarian.Location = new Point(32, 78);
             labelWaktuPencarian.Name = "labelWaktuPencarian";
             labelWaktuPencarian.Size = new Size(210, 35);
             labelWaktuPencarian.TabIndex = 5;
@@ -110,7 +113,7 @@
             // 
             labelPersentaseKecocokan.AutoSize = true;
             labelPersentaseKecocokan.Font = new Font("Segoe UI", 15F);
-            labelPersentaseKecocokan.Location = new Point(19, 124);
+            labelPersentaseKecocokan.Location = new Point(29, 128);
             labelPersentaseKecocokan.Name = "labelPersentaseKecocokan";
             labelPersentaseKecocokan.Size = new Size(273, 35);
             labelPersentaseKecocokan.TabIndex = 6;
@@ -196,7 +199,7 @@
             labelAgama.AutoSize = true;
             labelAgama.BackColor = Color.Transparent;
             labelAgama.FlatStyle = FlatStyle.Flat;
-            labelAgama.Location = new Point(269, 200);
+            labelAgama.Location = new Point(269, 249);
             labelAgama.Name = "labelAgama";
             labelAgama.Size = new Size(68, 20);
             labelAgama.TabIndex = 14;
@@ -207,7 +210,7 @@
             labelStatusPerkawinan.AutoSize = true;
             labelStatusPerkawinan.BackColor = Color.Transparent;
             labelStatusPerkawinan.FlatStyle = FlatStyle.Flat;
-            labelStatusPerkawinan.Location = new Point(269, 220);
+            labelStatusPerkawinan.Location = new Point(269, 269);
             labelStatusPerkawinan.Name = "labelStatusPerkawinan";
             labelStatusPerkawinan.Size = new Size(134, 20);
             labelStatusPerkawinan.TabIndex = 15;
@@ -218,7 +221,7 @@
             labelPekerjaan.AutoSize = true;
             labelPekerjaan.BackColor = Color.Transparent;
             labelPekerjaan.FlatStyle = FlatStyle.Flat;
-            labelPekerjaan.Location = new Point(269, 240);
+            labelPekerjaan.Location = new Point(269, 289);
             labelPekerjaan.Name = "labelPekerjaan";
             labelPekerjaan.Size = new Size(83, 20);
             labelPekerjaan.TabIndex = 16;
@@ -230,7 +233,7 @@
             labelKewarganegaraan.AutoSize = true;
             labelKewarganegaraan.BackColor = Color.Transparent;
             labelKewarganegaraan.FlatStyle = FlatStyle.Flat;
-            labelKewarganegaraan.Location = new Point(269, 260);
+            labelKewarganegaraan.Location = new Point(269, 309);
             labelKewarganegaraan.Name = "labelKewarganegaraan";
             labelKewarganegaraan.Size = new Size(140, 20);
             labelKewarganegaraan.TabIndex = 17;
@@ -356,6 +359,8 @@
             // roundBorderPanel2
             // 
             roundBorderPanel2.BackColor = Color.Transparent;
+            roundBorderPanel2.Controls.Add(alamatTambahan2);
+            roundBorderPanel2.Controls.Add(alamatTambahan);
             roundBorderPanel2.Controls.Add(outPicture);
             roundBorderPanel2.Controls.Add(labelNIK);
             roundBorderPanel2.Controls.Add(labelHeaderBiodata);
@@ -373,6 +378,22 @@
             roundBorderPanel2.Size = new Size(542, 369);
             roundBorderPanel2.TabIndex = 21;
             roundBorderPanel2.Paint += roundBorderPanel2_Paint;
+            // 
+            // alamatTambahan2
+            // 
+            alamatTambahan2.AutoSize = true;
+            alamatTambahan2.Location = new Point(330, 223);
+            alamatTambahan2.Name = "alamatTambahan2";
+            alamatTambahan2.Size = new Size(0, 20);
+            alamatTambahan2.TabIndex = 22;
+            // 
+            // alamatTambahan
+            // 
+            alamatTambahan.AutoSize = true;
+            alamatTambahan.Location = new Point(330, 202);
+            alamatTambahan.Name = "alamatTambahan";
+            alamatTambahan.Size = new Size(0, 20);
+            alamatTambahan.TabIndex = 21;
             // 
             // outPicture
             // 
@@ -406,9 +427,9 @@
             roundBorderPanel3.Controls.Add(labelAlgoritma);
             roundBorderPanel3.Controls.Add(labelWaktuPencarian);
             roundBorderPanel3.Controls.Add(labelPersentaseKecocokan);
-            roundBorderPanel3.Location = new Point(589, 431);
+            roundBorderPanel3.Location = new Point(494, 460);
             roundBorderPanel3.Name = "roundBorderPanel3";
-            roundBorderPanel3.Size = new Size(359, 200);
+            roundBorderPanel3.Size = new Size(542, 200);
             roundBorderPanel3.TabIndex = 23;
             // 
             // Form1
@@ -476,5 +497,7 @@
         private Panel panel1;
         private SrcTree.RoundBorderPanel roundBorderPanel3;
         private CustomControls.RoundedButton.RoundedButton roundedButton2;
+        private Label alamatTambahan;
+        private Label alamatTambahan2;
     }
 }

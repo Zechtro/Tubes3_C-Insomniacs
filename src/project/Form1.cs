@@ -46,7 +46,45 @@ namespace WinFormsApp3
                 labelTempatLahir.Text = $"Tempat Lahir: {Decrypt.decrypt(bio.Tempat_lahir)}";
                 labelJenisKelamin.Text = $"Jenis Kelamin : {Decrypt.decrypt(bio.Jenis_kelamin)}";
                 labelGolonganDarah.Text = $"Golongan Darah : {Decrypt.decrypt(bio.Golongan_darah)}";
-                labelAlamat.Text = $"Alamat : {Decrypt.decrypt(bio.Alamat)}";
+                string strAlamat = Decrypt.decrypt(bio.Alamat);
+                string firstPart = "";
+                string secondPart = "";
+                string thirdPart = ""; // Additional part if needed
+
+                if (strAlamat.Length > 19)
+                {
+                    int lastSpaceIndex = strAlamat.Substring(0, 19).LastIndexOf(' ');
+
+                    if (lastSpaceIndex == -1)
+                    {
+                        lastSpaceIndex = 19;
+                    }
+
+                    firstPart = strAlamat.Substring(0, lastSpaceIndex);
+                    secondPart = strAlamat.Substring(lastSpaceIndex + 1);
+
+                    if (secondPart.Length > 19)
+                    {
+                        // Find the last space in the second part up to the 19th character
+                        int secondSpaceIndex = secondPart.Substring(0, 19).LastIndexOf(' ');
+                        if (secondSpaceIndex == -1)
+                        {
+                            secondSpaceIndex = 19;  // Split at exactly 19 if no space is found
+                        }
+                        thirdPart = secondPart.Substring(secondSpaceIndex + 1);
+                        secondPart = secondPart.Substring(0, secondSpaceIndex);
+                    }
+
+                    labelAlamat.Text = $"Alamat : {firstPart}";
+                    alamatTambahan.Text = secondPart;
+                    alamatTambahan2.Text = thirdPart;  // New label for the additional part
+                }
+                else
+                {
+                    labelAlamat.Text = $"Alamat : {strAlamat}";
+                    alamatTambahan.Text = "";  // Clearing since the address is short
+                    alamatTambahan2.Text = "";  // Clearing since the address is short
+                }
                 labelAgama.Text = $"Agama : {Decrypt.decrypt(bio.Agama)}";
                 labelStatusPerkawinan.Text = $"Status Perkawinan : {Decrypt.decrypt(bio.Status_perkawinan)}";
                 labelPekerjaan.Text = $"Pekerjaan : {Decrypt.decrypt(bio.Pekerjaan)}";
