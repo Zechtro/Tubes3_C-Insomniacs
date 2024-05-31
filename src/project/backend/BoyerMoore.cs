@@ -36,6 +36,8 @@ public class BoyerMoore : IBaseAlgorithm
 
         while (textIndex <= textArray.Length - this.pattern.Length)
         {
+
+            // Scan from right to left
             int patternIndex = this.pattern.Length - 1;
 
             while (patternIndex >= 0 && this.pattern[patternIndex] == textArray[textIndex + patternIndex])
@@ -60,7 +62,10 @@ public class BoyerMoore : IBaseAlgorithm
 
     private void PreprocessBadCharacterHeuristic()
     {
+        // fill array with -1
         Array.Fill(this.badCharacterShift, -1);
+
+        // fill array badCharacterShift 
         for (int i = 0; i < pattern.Length; i++)
         {
             this.badCharacterShift[pattern[i]] = i;
