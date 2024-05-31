@@ -30,10 +30,10 @@ namespace WinFormsApp3
 
         private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari)
         {
-            
 
 
-            
+
+
             if (bio != null)
             {
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
@@ -64,34 +64,44 @@ namespace WinFormsApp3
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             // logic searching
-            Stopwatch stopwatch = new Stopwatch();
-
-            string filename = inputPicture.ImageLocation;
-            ResetTextLabel();
-            if (algorithmDropdown != null)
+            try
             {
-                if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1)
+                Stopwatch stopwatch = new Stopwatch();
+
+                string filename = inputPicture.ImageLocation;
+                ResetTextLabel();
+                if (algorithmDropdown != null)
                 {
-                    AlgoMaster algo = new AlgoMaster();
-                    stopwatch.Start();
-                    Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
-                    stopwatch.Stop();
-                    long timeTaken = stopwatch.ElapsedMilliseconds;
-
-                    if (hasil.Item1 == null || hasil.Item2 == null)
+                    if (algorithmDropdown.SelectedIndex == 0 || algorithmDropdown.SelectedIndex == 1)
                     {
-                        labelHeaderBiodata.Text = "Tidak ketemu";
-                    }
-                    else
-                    {
-                        // labelHeaderBiodata.Text = hasil.Item2.Nama;
-                        // labelPekerjaan.Text = "ANJING KETEMU";
-                        // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
-                        updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
+                        AlgoMaster algo = new AlgoMaster();
+                        stopwatch.Start();
+                        Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, algorithmDropdown.SelectedIndex);
+                        stopwatch.Stop();
+                        long timeTaken = stopwatch.ElapsedMilliseconds;
 
+                        if (hasil.Item1 == null || hasil.Item2 == null)
+                        {
+                            labelHeaderBiodata.Text = "Tidak ketemu";
+                        }
+                        else
+                        {
+                            // labelHeaderBiodata.Text = hasil.Item2.Nama;
+                            // labelPekerjaan.Text = "ANJING KETEMU";
+                            // outPicture.ImageLocation = BASEDIR + hasil.Item2.Berkas_citra;
+                            updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
+
+                        }
                     }
                 }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during the search: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
