@@ -1,12 +1,8 @@
 
 
-using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.IO;
 public class BMPToBytes
 {
     public static SixLabors.ImageSharp.Image<Rgba32> ConvertToBlackAndWhite(string filePath)
@@ -73,6 +69,18 @@ public class BMPToBytes
             asciiRows.Add(rowAscii.ToString());
         }
 
+        for (int i = asciiRows.Count - 1; i >= 0; i--)
+        {
+            if (asciiRows[i].All(c => c == '\0'))
+            {
+                asciiRows.RemoveAt(i);
+            }
+            else
+            {
+                break;
+            }
+        }
+
         return asciiRows;
     }
 
@@ -96,7 +104,7 @@ public class BMPToBytes
 
             binaryRows.Add(binaryRow.ToString());
         }
-
+        binaryRows = RemoveTrailingZeroRows(binaryRows);
         return binaryRows;
     }
 
@@ -108,10 +116,13 @@ public class BMPToBytes
             var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
             List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
 
+            // TODO : try center of the image instead
             // Picking pattern from the 3/4th row of the image
             int pickedRow = (int)Math.Floor(binaryRows.Count * (3.0 / 4.0));
             string pattern = binaryRows[pickedRow];
+            Console.WriteLine($"Pattern in row {pickedRow}, binary form: " + pattern);
 
+            // TODO: find a better way to handle non length of multiple 8
             // Pad the pattern to make its length a multiple of 8
             int paddingLength = 8 - (pattern.Length % 8);
             if (paddingLength != 8)
@@ -120,35 +131,45 @@ public class BMPToBytes
             }
             List<string> segments = new List<string>();
 
+            // Separete binary pattern into segments of 8 bits
             for (int j = 0; j < pattern.Length; j += 8)
             {
                 string segment = pattern.Substring(j, 8);
                 segments.Add(segment);
             }
 
-            // Determine the 64 bits in the center of the row
-            int maxZeros = -1;
+            // TODO: determine if 64 bit pattern is better than 32 bit
+            // Determine the 32 bits in the center of the row
+            int minHomogeneity = int.MaxValue;
             int startIndex = 0;
 
-            for (int z = 0; z <= segments.Count - 8; z++)
+            for (int z = 0; z <= segments.Count - 4; z++)
             {
-                int zeroCount = 0;
+                int homogeneity = 0;
 
-                // Count the number of zeros in the current sequence of 8 segments
-                for (int j = z; j < z + 8; j++)
+                // Count the homogeneity in the current sequence of 4 segments
+                for (int j = z; j < z + 4; j++)
                 {
-                    zeroCount += segments[j].Count(c => c == '0');
+                    int zeroCount = segments[j].Count(c => c == '0');
+                    int oneCount = 8 - zeroCount;
+                    homogeneity += Math.Abs(zeroCount - oneCount);
                 }
 
-                // Update the maximum number of zeros and the starting index if necessary
-                if (zeroCount > maxZeros)
+                // Update the minimum homogeneity and the starting index if necessary
+                if (homogeneity < minHomogeneity)
                 {
-                    maxZeros = zeroCount;
+                    minHomogeneity = homogeneity;
                     startIndex = z;
                 }
             }
 
-            List<string> result = segments.GetRange(startIndex, 8);
+            List<string> result = segments.GetRange(startIndex, 4);
+            Console.Write("Filtered pattern in binary: ");
+            foreach (string res in result)
+            {
+                Console.Write(res);
+            }
+            Console.WriteLine();
             StringBuilder finalPattern = new StringBuilder();
             foreach (string entry in result)
             {
@@ -164,5 +185,21 @@ public class BMPToBytes
             Console.WriteLine($"Something went wrong: {e.Message}");
             throw e;
         }
+    }
+
+    private static List<string> RemoveTrailingZeroRows(List<string> binaryRows)
+    {
+        for (int i = binaryRows.Count - 1; i >= 0; i--)
+        {
+            if (binaryRows[i].All(c => c == '0'))
+            {
+                binaryRows.RemoveAt(i);
+            }
+            else
+            {
+                break;
+            }
+        }
+        return binaryRows;
     }
 }
