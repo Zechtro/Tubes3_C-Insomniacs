@@ -28,28 +28,24 @@ public class RegexAlayPattern
     public void GeneratePattern(string baseString)
     {
         StringBuilder patternBuilder = new StringBuilder();
+        bool isFirstChar = true;
+
         foreach (char c in baseString.ToLower())
         {
             if (leetMap.ContainsKey(c))
             {
-                if ("aeiou".IndexOf(c) >= 0)
+                patternBuilder.Append('[');
+                patternBuilder.Append(c);
+                foreach (char leetChar in leetMap[c])
                 {
-                    patternBuilder.Append('[');
-                    patternBuilder.Append(c);
-                    foreach (char leetChar in leetMap[c])
-                    {
-                        patternBuilder.Append(leetChar);
-                    }
+                    patternBuilder.Append(leetChar);
+                }
+                if ("aeiou".IndexOf(c) >= 0 && !isFirstChar)
+                {
                     patternBuilder.Append("]?");
                 }
                 else
                 {
-                    patternBuilder.Append('[');
-                    patternBuilder.Append(c);
-                    foreach (char leetChar in leetMap[c])
-                    {
-                        patternBuilder.Append(leetChar);
-                    }
                     patternBuilder.Append(']');
                 }
             }
@@ -57,7 +53,9 @@ public class RegexAlayPattern
             {
                 patternBuilder.Append(Regex.Escape(c.ToString()));
             }
+            isFirstChar = false;
         }
+
         regexPattern = patternBuilder.ToString();
     }
 
