@@ -37,16 +37,16 @@ namespace WinFormsApp3
             if (bio != null)
             {
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
-                labelNIK.Text = $"NIK : {bio.NIK}";
+                labelNIK.Text = $"NIK : {Decrypt.decrypt(bio.NIK)}";
                 labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {bio.Presentase}%";
-                labelTempatLahir.Text = $"Tempat Lahir: {bio.Tempat_lahir}";
-                labelJenisKelamin.Text = $"Jenis Kelamin : {bio.Jenis_kelamin}";
-                labelGolonganDarah.Text = $"Golongan Darah : {bio.Golongan_darah}";
-                labelAlamat.Text = $"Alamat : {bio.Alamat}";
-                labelAgama.Text = $"Agama : {bio.Agama}";
-                labelStatusPerkawinan.Text = $"Status Perkawinan : {bio.Status_perkawinan}";
-                labelPekerjaan.Text = $"Pekerjaan : {bio.Pekerjaan}";
-                labelKewarganegaraan.Text = $"Kewarganegaraan : {bio.Kewarganegaraan}";
+                labelTempatLahir.Text = $"Tempat Lahir: {Decrypt.decrypt(bio.Tempat_lahir)}";
+                labelJenisKelamin.Text = $"Jenis Kelamin : {Decrypt.decrypt(bio.Jenis_kelamin)}";
+                labelGolonganDarah.Text = $"Golongan Darah : {Decrypt.decrypt(bio.Golongan_darah)}";
+                labelAlamat.Text = $"Alamat : {Decrypt.decrypt(bio.Alamat)}";
+                labelAgama.Text = $"Agama : {Decrypt.decrypt(bio.Agama)}";
+                labelStatusPerkawinan.Text = $"Status Perkawinan : {Decrypt.decrypt(bio.Status_perkawinan)}";
+                labelPekerjaan.Text = $"Pekerjaan : {Decrypt.decrypt(bio.Pekerjaan)}";
+                labelKewarganegaraan.Text = $"Kewarganegaraan : {Decrypt.decrypt(bio.Kewarganegaraan)}";
                 labelAlgoritma.Text = $"Algoritma: {bio.Algoritma}";
 
 
