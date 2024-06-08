@@ -42,7 +42,7 @@ namespace WinFormsApp3.backend
             {
 
                 string final = baseDir + sidik.Berkas_citra;
-                List<string> text = BMPToBytes.ConvertBMPToASCII(final); // ascii, row of strings
+                List<string> text = BMPToBytes.ConvertBMPtoASCII(final); // ascii, row of strings
                 index = this.algorithm.SearchAllRows(text);
                 if (index != -1)
                 {

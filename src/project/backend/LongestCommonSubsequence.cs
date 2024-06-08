@@ -45,7 +45,7 @@ public class LongestCommonSubsequence : IBaseAlgorithm
         foreach (SidikJari sidik in allSidik)
         {
             string final = baseDir + sidik.Berkas_citra;
-            List<string> text = BMPToBytes.ConvertBMPToASCII(final);
+            List<string> text = BMPToBytes.ConvertBMPtoASCII(final);
             currLength = this.SearchAllRows(text);
             if (currLength > currMaxLength)
             {
