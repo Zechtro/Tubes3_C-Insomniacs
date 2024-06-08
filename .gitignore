@@ -1,0 +1,20 @@
+# Ignore build output
+**/bin/
+**/obj/
+
+# Ignore NuGet packages
+*.nupkg
+**/packages/
+
+# Ignore user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Rider project files
+.idea/
+*.sln.iml
+
+.vs/

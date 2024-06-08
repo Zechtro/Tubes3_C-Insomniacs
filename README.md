@@ -29,6 +29,15 @@
 - Tech 1 - version 1.0
 - Tech 2 - version 2.0
 - Tech 3 - version 3.0
+- dotnet add package System.Drawing.Common
+- dotnet add package SixLabors.ImageSharp
+- sudo apt install dotnet-runtime-6.0
+- dotnet add package System.Data.SqlClient
+- dotnet add package System.Data.SQLite
+- dotnet add package Microsoft.Data.Sqlite
+- dotnet add package Dapper
+
+
 
 
 ## Features
