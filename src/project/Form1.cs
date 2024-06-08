@@ -43,7 +43,7 @@ namespace WinFormsApp3
 
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
                 labelNIK.Text = $"NIK : {Decrypt.decrypt(bio.NIK)}";
-                labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {bio.Presentase}%";
+                labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {Math.Round(double.Parse(bio.Presentase.ToString()),2)}%";
                 labelTempatLahir.Text = $"Tempat Lahir: {Decrypt.decrypt(bio.Tempat_lahir)}";
                 labelJenisKelamin.Text = $"Jenis Kelamin : {Decrypt.decrypt(bio.Jenis_kelamin)}";
                 labelGolonganDarah.Text = $"Golongan Darah : {Decrypt.decrypt(bio.Golongan_darah)}";
