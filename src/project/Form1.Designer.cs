@@ -77,14 +77,18 @@
             alamatTambahan2 = new Label();
             alamatTambahan = new Label();
             outPicture = new RoundPictureBox();
+            searchGIF = new PictureBox();
             verticalLabel1 = new VerticalLabel();
             roundBorderPanel3 = new SrcTree.RoundBorderPanel();
+            searchPanel = new Panel();
             roundBorderPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inputPicture).BeginInit();
             roundBorderPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)outPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)searchGIF).BeginInit();
             roundBorderPanel3.SuspendLayout();
+            searchPanel.SuspendLayout();
             SuspendLayout();
             // 
             // labelAlgoritma
@@ -96,7 +100,6 @@
             labelAlgoritma.Size = new Size(137, 35);
             labelAlgoritma.TabIndex = 5;
             labelAlgoritma.Text = "Algoritma: ";
-            labelAlgoritma.Click += label1_Click;
             // 
             // labelWaktuPencarian
             // 
@@ -107,7 +110,6 @@
             labelWaktuPencarian.Size = new Size(210, 35);
             labelWaktuPencarian.TabIndex = 5;
             labelWaktuPencarian.Text = "Waktu Pencarian :";
-            labelWaktuPencarian.Click += label1_Click;
             // 
             // labelPersentaseKecocokan
             // 
@@ -118,7 +120,6 @@
             labelPersentaseKecocokan.Size = new Size(273, 35);
             labelPersentaseKecocokan.TabIndex = 6;
             labelPersentaseKecocokan.Text = "Persentase Kecocokan :";
-            labelPersentaseKecocokan.Click += label2_Click;
             // 
             // labelHeaderBiodata
             // 
@@ -138,7 +139,6 @@
             labelNIK.Size = new Size(44, 20);
             labelNIK.TabIndex = 8;
             labelNIK.Text = "NIK : ";
-            labelNIK.Click += labelNIK_Click;
             // 
             // label5
             // 
@@ -181,7 +181,6 @@
             labelGolonganDarah.Size = new Size(129, 20);
             labelGolonganDarah.TabIndex = 12;
             labelGolonganDarah.Text = "Golongan Darah : ";
-            labelGolonganDarah.Click += label8_Click;
             // 
             // labelAlamat
             // 
@@ -226,7 +225,6 @@
             labelPekerjaan.Size = new Size(83, 20);
             labelPekerjaan.TabIndex = 16;
             labelPekerjaan.Text = "Pekerjaan : ";
-            labelPekerjaan.Click += labelPekerjaan_Click;
             // 
             // labelKewarganegaraan
             // 
@@ -281,7 +279,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(265, 69);
             panel1.TabIndex = 23;
-            panel1.Paint += panel1_Paint_2;
             // 
             // label14
             // 
@@ -293,7 +290,6 @@
             label14.Size = new Size(53, 28);
             label14.TabIndex = 21;
             label14.Text = "KMP";
-            label14.Click += label14_Click_1;
             // 
             // methodToggle
             // 
@@ -354,7 +350,6 @@
             inputPicture.Size = new Size(166, 202);
             inputPicture.TabIndex = 19;
             inputPicture.TabStop = false;
-            inputPicture.Click += inputPicture_Click_1;
             // 
             // roundBorderPanel2
             // 
@@ -377,7 +372,6 @@
             roundBorderPanel2.Name = "roundBorderPanel2";
             roundBorderPanel2.Size = new Size(542, 369);
             roundBorderPanel2.TabIndex = 21;
-            roundBorderPanel2.Paint += roundBorderPanel2_Paint;
             // 
             // alamatTambahan2
             // 
@@ -407,7 +401,16 @@
             outPicture.Size = new Size(199, 264);
             outPicture.TabIndex = 20;
             outPicture.TabStop = false;
-            outPicture.Click += outPicture_Click;
+            // 
+            // searchGIF
+            // 
+            searchGIF.BackgroundImageLayout = ImageLayout.Center;
+            searchGIF.Image = (Image)resources.GetObject("searchGIF.Image");
+            searchGIF.Location = new Point(-113, 3);
+            searchGIF.Name = "searchGIF";
+            searchGIF.Size = new Size(823, 690);
+            searchGIF.TabIndex = 23;
+            searchGIF.TabStop = false;
             // 
             // verticalLabel1
             // 
@@ -432,19 +435,28 @@
             roundBorderPanel3.Size = new Size(542, 200);
             roundBorderPanel3.TabIndex = 23;
             // 
+            // searchPanel
+            // 
+            searchPanel.Controls.Add(searchGIF);
+            searchPanel.Location = new Point(484, 49);
+            searchPanel.Name = "searchPanel";
+            searchPanel.Size = new Size(552, 608);
+            searchPanel.TabIndex = 24;
+            searchPanel.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1062, 673);
+            Controls.Add(searchPanel);
             Controls.Add(roundBorderPanel3);
             Controls.Add(verticalLabel1);
             Controls.Add(roundBorderPanel2);
             Controls.Add(roundBorderPanel1);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             roundBorderPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -452,8 +464,10 @@
             roundBorderPanel2.ResumeLayout(false);
             roundBorderPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)outPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)searchGIF).EndInit();
             roundBorderPanel3.ResumeLayout(false);
             roundBorderPanel3.PerformLayout();
+            searchPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -499,5 +513,7 @@
         private CustomControls.RoundedButton.RoundedButton roundedButton2;
         private Label alamatTambahan;
         private Label alamatTambahan2;
+        private PictureBox searchGIF;
+        private Panel searchPanel;
     }
 }

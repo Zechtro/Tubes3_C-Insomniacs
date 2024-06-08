@@ -9,26 +9,12 @@ namespace WinFormsApp3
     {
         const string BASEDIR = "../../";
         Boolean toggle = false;
+        Boolean searching = false;
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string imagePath = openFileDialog.FileName;
-                // Now you have the path to the selected image
-                Console.WriteLine(imagePath);
-                inputPicture.Image = Image.FromFile(imagePath);
-                inputPicture.ImageLocation = imagePath;
-            }
-        }
-
         private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari)
         {
 
@@ -104,91 +90,6 @@ namespace WinFormsApp3
 
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputPicture_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void roundedButton1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void roundedButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toggleButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void inputPicture_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelNIK_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelPekerjaan_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void methodToggle_CheckedChanged_1(object sender, EventArgs e)
         {
             if (methodToggle.Checked)
@@ -201,61 +102,49 @@ namespace WinFormsApp3
             }
         }
 
-        private void outPicture_Click(object sender, EventArgs e)
+        private async void buttonSearch_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void label14_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint_2(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void roundedButton2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonSearch_Click_1(object sender, EventArgs e)
-        {
-            // logic searching
-
-            string filename = inputPicture.ImageLocation;
-            ResetTextLabel();
-            if (toggle)
+            if (!searching && inputPicture.ImageLocation != null)
             {
-                AlgoMaster algo = new AlgoMaster();
-                Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, 0);
-                if (hasil.Item1 == null || hasil.Item2 == null)
+                searching = true;
+                searchPanel.Visible = true;
+                string filename = inputPicture.ImageLocation;
+                ResetTextLabel();
+
+                var searchTask = Task.Run(() =>
                 {
-                    labelHeaderBiodata.Text = "Tidak ketemu";
-                }
-                else
+                    AlgoMaster algo = new AlgoMaster();
+                    if (toggle)
+                    {
+                        return algo.Search(filename, 0);
+                    }
+                    else
+                    {
+                        return algo.Search(filename, 1);
+                    }
+                });
+
+                try
                 {
-                    updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
+                    var hasil = await searchTask;
+
+                    if (hasil.Item1 == null || hasil.Item2 == null)
+                    {
+                        labelHeaderBiodata.Text = "Tidak ketemu";
+                    }
+                    else
+                    {
+                        updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    labelHeaderBiodata.Text = "Error: " + ex.Message;
+                }
+
+                searchPanel.Visible = false;
+                searching = false;
             }
-            else
-            {
-                AlgoMaster algo = new AlgoMaster();
-                Tuple<Biodata?, SidikJari?> hasil = algo.Search(filename, 1);
-
-                if (hasil.Item1 == null || hasil.Item2 == null)
-                {
-                    labelHeaderBiodata.Text = "Tidak ketemu";
-                }
-                else
-                {
-                    updateLabelBasedOnSearch(hasil.Item1, hasil.Item2);
-
-                }
-            }
-
         }
 
         private void roundedButton2_Click_1(object sender, EventArgs e)
@@ -266,16 +155,10 @@ namespace WinFormsApp3
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string imagePath = openFileDialog.FileName;
-                // Now you have the path to the selected image
                 Console.WriteLine(imagePath);
                 inputPicture.Image = Image.FromFile(imagePath);
                 inputPicture.ImageLocation = imagePath;
             }
-        }
-
-        private void roundBorderPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
