@@ -43,7 +43,48 @@ public class Program
 
 
 
-        // experiment with a block
+        // experiment with a block of code
+
+        const string BASEDIR = "../";
+        // string testSource = "test/83__M_Right_middle_finger.BMP";
+        // string testSource = "test/8__M_Right_middle_finger.BMP";
+
+        string testSource = "test/alter/33__M_Right_middle_finger_CR.BMP";
+        Image<Rgba32> image  = BMPToBytes.ConvertToBlackAndWhite(BASEDIR + testSource);
+        List<string> imageInBinary = BMPToBytes.ConvertImageToBinary(image);
+        List<string> asciiForm = BMPToBytes.ConvertBMPtoASCIIVersion2( BASEDIR + testSource);
+        string pattern = BMPToBytes.GetImagePatternVersion2(BASEDIR + testSource);
+        int row = 0;
+        Console.WriteLine("test/8__M_Right_middle_finger.BMP in binary: ");
+        // foreach (string s in imageInBinary ){
+        //     Console.WriteLine(s);
+        //     row++;
+        // }
+        // Console.WriteLine("Row in binary : " +row);
+        // row = 0;
+
+        Console.WriteLine("test/8__M_Right_middle_finger.BMP in ascii: ");
+        foreach(string s in asciiForm){
+            Console.WriteLine(s);
+            row++;
+        }
+
+        Console.WriteLine("Amount of rows : " + row);
+
+        Console.WriteLine("THIS IS THE PATTERN : " + pattern);
+
+
+
+        // using boyer moore:
+        BoyerMoore bm = new BoyerMoore(pattern);
+
+        int location = bm.SearchAllRows(asciiForm);
+        if (location != -1){
+            Console.WriteLine();
+            Console.WriteLine("FOUND IT !!!");
+            Console.WriteLine(asciiForm[location]);
+        }
+
     }
 }
 

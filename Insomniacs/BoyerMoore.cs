@@ -111,13 +111,18 @@ public class BoyerMoore : IBaseAlgorithm
 
         // for one image
         int i = -1;
+        int j = 0;
         foreach (string entries in text)
-        {
+        {   
+
             i = this.Search(entries);
+            
             if (i != -1)
             {
-                return i;
+                Console.WriteLine(entries);
+                return j;
             }
+            j++;
         }
         return -1;
     }

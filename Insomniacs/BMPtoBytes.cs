@@ -2,6 +2,7 @@
 
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp;
 using System.Text;
 public class BMPToBytes
 {
@@ -141,8 +142,100 @@ public class BMPToBytes
 
             asciiRows.Add(rowAscii.ToString());
         }
-
         return asciiRows;
+    }
+
+
+public static string GetImagePatternVersion2(string filename)
+    {
+        Console.WriteLine();
+        var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
+        List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
+
+        // picking top, center, and bottom pattern
+        // pick all possible rows
+        string pickedPattern = "";
+        int pickedHomogenity = int.MaxValue;
+        string pickedPatternInBinary = "";
+
+        int pickedPatternRow = -1;
+        string pattern;
+        List<string> segments;
+
+        int[] allRow = new int[3];
+        for (int i = 0; i < 3; i++)
+        {
+            allRow[i] = (int)Math.Floor(binaryRows.Count * ((i + 1) / 4.0));
+            Console.WriteLine(allRow[i]);
+        }
+
+
+        for (int patternIndex = 0; patternIndex < 3; patternIndex++)
+        {
+            int rowIndexInBinaryRows = allRow[patternIndex];
+            pattern = binaryRows[allRow[patternIndex]]; // starting row picked
+
+    
+            // TODO: find a better way to handle non length of multiple 8
+            // Pad the pattern to make its length a multiple of 8
+
+            segments = new List<string>();
+
+        
+            for (int j = 0; j < pattern.Length; j += 1)
+            {
+                string segment = "";
+                for (int  i = 0 ; i < 8 ; i++){
+                    segment += binaryRows[rowIndexInBinaryRows + i][j];
+                }
+                segments.Add(segment);
+            }
+
+            // TODO: determine if 64 bit pattern is better than 32 bit
+            // get 32 
+            int minHomogeneity = int.MaxValue;
+            int startIndex = 0;
+
+            for (int z = 0; z <= segments.Count - 30; z++)
+            {
+                int homogeneity = 0;
+                // Count the homogeneity in the current sequence of 4 segments
+                for (int j = z; j < z + 30; j++)
+                {
+                    int zeroCount = segments[j].Count(c => c == '0');
+                    int oneCount = 8 - zeroCount;
+                    homogeneity += Math.Abs(zeroCount - oneCount);
+                }
+                // Update the minimum homogeneity and the starting index if necessary
+                if (homogeneity < minHomogeneity)
+                {
+                    minHomogeneity = homogeneity;
+                    startIndex = z;
+                }
+            }
+            
+            if (minHomogeneity < pickedHomogenity)
+            {
+                pickedPatternInBinary = "";
+                List<string> result = segments.GetRange(startIndex, 30);
+                StringBuilder finalPattern = new StringBuilder();
+                foreach (string entry in result)
+                {
+                    pickedPatternInBinary += entry;
+                    int asciiValue = Convert.ToInt32(entry, 2);
+                    char asciiCharacter = (char)asciiValue;
+                    finalPattern.Append(asciiCharacter);
+                }
+                pickedPattern = finalPattern.ToString();
+                pickedHomogenity = minHomogeneity;
+                pickedPatternRow = allRow[patternIndex];
+            }
+        }
+        if (string.IsNullOrEmpty(pickedPattern))
+        {
+            throw new Exception("Error in coverting fingerprint to a pattern");
+        }
+        return pickedPattern;
     }
 
     public static string GetImagePattern(string filename)

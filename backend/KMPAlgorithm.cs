@@ -1,6 +1,7 @@
 
 namespace WinFormsApp3.backend
 {
+
     public class KMPAlgorithm : IBaseAlgorithm
     {
         private string pattern;
@@ -71,7 +72,6 @@ namespace WinFormsApp3.backend
 
                 if (j == M)
                 {
-                    // Console.WriteLine("Found pattern at index " + (i - j));
                     return (i - j);
                 }
                 else if (i < N && pattern[j] != text[i])
