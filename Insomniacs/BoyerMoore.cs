@@ -119,7 +119,6 @@ public class BoyerMoore : IBaseAlgorithm
             
             if (i != -1)
             {
-                Console.WriteLine(entries);
                 return j;
             }
             j++;
