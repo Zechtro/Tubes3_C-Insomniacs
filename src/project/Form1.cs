@@ -31,8 +31,16 @@ namespace WinFormsApp3
 
         private void updateLabelBasedOnSearch(Biodata? bio, SidikJari? sidikJari)
         {
+
             if (bio != null)
             {
+                if (bio.Presentase != null){
+                    if (double.Parse(bio.Presentase.ToString()) < 55 ){
+                        throw new Exception("Fingerprint not found !");
+                    }
+                }
+
+
                 labelWaktuPencarian.Text = $"Waktu Pencarian : {bio.TimeTaken} ms";
                 labelNIK.Text = $"NIK : {Decrypt.decrypt(bio.NIK)}";
                 labelPersentaseKecocokan.Text = $"Persentase Kecocokan : {bio.Presentase}%";

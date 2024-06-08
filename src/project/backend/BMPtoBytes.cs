@@ -225,6 +225,8 @@ public class BMPToBytes
 
             }
         }
+
+
         if (string.IsNullOrEmpty(pickedPattern))
         {
             throw new Exception("Error in coverting fingerprint to a pattern");
@@ -233,10 +235,13 @@ public class BMPToBytes
         return pickedPattern;
     }
 
-    public static string GetImagePattern(string filename)
+    public static string GetImagePattern(string filename)  
     {
         var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
         List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
+        if (binaryRows.Count == 0){
+            throw new Exception("Cannot process a black image");
+        }
 
         // picking top, center, and bottom pattern
         // pick all possible rows
@@ -265,7 +270,7 @@ public class BMPToBytes
             for (int j = 0; j < pattern.Length; j += 1)
             {
                 string segment = "";
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 8 && rowIndexInBinaryRows + i < binaryRows.Count; i++)
                 {
                     segment += binaryRows[rowIndexInBinaryRows + i][j];
                 }
@@ -311,6 +316,11 @@ public class BMPToBytes
                 pickedPatternRow = allRow[patternIndex];
             }
         }
+
+        if (pickedPattern.All(c => c == 'ÿ' )){
+            throw new Exception("Unable to process image");
+        }
+
         if (string.IsNullOrEmpty(pickedPattern))
         {
             throw new Exception("Error in coverting fingerprint to a pattern");
