@@ -9,12 +9,13 @@ public class Program
     public static void Main()
     {
         // const string BASEDIR = "../";
-        // string testSource = "test/83__M_Right_middle_finger.BMP";
+        // // string testSource = "test/83__M_Right_middle_finger.BMP";
         // // string testSource = "test/8__M_Right_middle_finger.BMP";
+        // string testSource = "test/alter/33__M_Right_middle_finger_CR.BMP";
         // Image<Rgba32> image  = BMPToBytes.ConvertToBlackAndWhite(BASEDIR + testSource);
         // List<string> imageInBinary = BMPToBytes.ConvertImageToBinary(image);
-        // List<String> asciiForm = BMPToBytes.ConvertBMPToASCII( BASEDIR + testSource);
-        // Console.WriteLine("83__M_Right_middle_finger: ");
+        // List<string> asciiForm = BMPToBytes.ConvertBMPToASCII( BASEDIR + testSource);
+        // Console.WriteLine("test/8__M_Right_middle_finger.BMP: ");
         // foreach (string s in imageInBinary ){
         //     Console.WriteLine(s);
         // }
@@ -31,14 +32,18 @@ public class Program
         //     Console.WriteLine(s);
         // }
 
-        RegexAlayPattern regexAlay = new RegexAlayPattern();
-        string baseString = "Marvel Pangondian";
-        regexAlay.GeneratePattern(baseString);
-        string input = "M4Rvl p4N6Ondn";
+        // // RegexAlayPattern regexAlay = new RegexAlayPattern();
+        // // string baseString = "Marvel Pangondian";
+        // // regexAlay.GeneratePattern(baseString);
+        // // string input = "M4Rvl p4N6Ondn";
 
-        Console.WriteLine("Pattern: " + regexAlay.GetPattern());
-        Console.WriteLine("Is Match: " + regexAlay.IsMatch(input));
-        Console.WriteLine("Normalized: " + regexAlay.Normalize(input));
+        // // Console.WriteLine("Pattern: " + regexAlay.GetPattern());
+        // // Console.WriteLine("Is Match: " + regexAlay.IsMatch(input));
+        // // Console.WriteLine("Normalized: " + regexAlay.Normalize(input));
+
+
+
+        // experiment with a block
     }
 }
 

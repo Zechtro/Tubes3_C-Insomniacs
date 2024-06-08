@@ -9,16 +9,10 @@ public class BMPToBytes
     {
         SixLabors.ImageSharp.Image<Rgba32> image;
         image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
-        try
-        {
-            // load filePath
-            image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error loading image: {ex.Message}");
-            throw ex;
-        }
+
+        // load filePath
+        image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
+
 
         // pixels with grayscale value  > 0.5 will be white
         // pixels with grayscale value  <= 0.5 will be white
@@ -69,6 +63,7 @@ public class BMPToBytes
             asciiRows.Add(rowAscii.ToString());
         }
 
+        // remove trailing zero
         for (int i = asciiRows.Count - 1; i >= 0; i--)
         {
             if (asciiRows[i].All(c => c == '\0'))
@@ -83,6 +78,9 @@ public class BMPToBytes
 
         return asciiRows;
     }
+
+
+
 
     public static List<string> ConvertImageToBinary(SixLabors.ImageSharp.Image<Rgba32> image)
     {
@@ -108,20 +106,72 @@ public class BMPToBytes
         return binaryRows;
     }
 
+    public static List<string> ConvertBMPtoASCIIVersion2(string filePath)
+    {
+        var image = ConvertToBlackAndWhite(filePath);
+        List<string> asciiRows = new List<string>();
+        int width = image.Width;
+        int height = image.Height;
+
+        // remove the last 7 rows
+        // for each binary (1 white 0 black), in coordinate , the character representation of it will be the ascii form of binary x,y to x,y + 8
+        // reference : https://informatika.stei.itb.ac.id/~rinaldi.munir/TA/Makalah-KNIF-2010.pdf
+
+        for (int y = 0; y < height - 7; y++)
+        {
+            StringBuilder rowAscii = new StringBuilder();
+
+            for (int x = 0; x < width; x++)
+            {
+                StringBuilder binaryString = new StringBuilder();
+
+                // Collect 8 bits
+                for (int i = 0; i < 8; i++)
+                {
+                    Rgba32 pixel = image[x, y + i];
+                    bool isWhite = pixel.R > 128 && pixel.G > 128 && pixel.B > 128;
+                    char binaryChar = isWhite ? '1' : '0';
+                    binaryString.Append(binaryChar);
+                }
+
+                // Convert binary string to a byte and then to a character
+                byte b = Convert.ToByte(binaryString.ToString(), 2);
+                rowAscii.Append((char)b);
+            }
+
+            asciiRows.Add(rowAscii.ToString());
+        }
+
+        return asciiRows;
+    }
+
     public static string GetImagePattern(string filename)
     {
-        try
+        Console.WriteLine();
+        var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
+        List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
+
+        // picking top, center, and bottom pattern
+        // pick all possible rows
+        string pickedPattern = "";
+        int pickedHomogenity = int.MaxValue;
+        string pickedPatternInBinary = "";
+
+        int pickedPatternRow = -1;
+        string pattern;
+        List<string> segments;
+
+        int[] allRow = new int[3];
+        for (int i = 0; i < 3; i++)
         {
-            // TODO : generate a more surefire way of picking the pattern
-            var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
-            List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
+            allRow[i] = (int)Math.Floor(binaryRows.Count * ((i + 1) / 4.0));
+        }
 
-            // TODO : try center of the image instead
-            // Picking pattern from the 3/4th row of the image
-            int pickedRow = (int)Math.Floor(binaryRows.Count * (3.0 / 4.0));
-            string pattern = binaryRows[pickedRow];
-            Console.WriteLine($"Pattern in row {pickedRow}, binary form: " + pattern);
 
+        for (int patternIndex = 0; patternIndex < 3; patternIndex++)
+        {
+            pattern = binaryRows[allRow[patternIndex]];
+            Console.Write("Row " + allRow[patternIndex] + " binary : " + pattern + "\n");
             // TODO: find a better way to handle non length of multiple 8
             // Pad the pattern to make its length a multiple of 8
             int paddingLength = 8 - (pattern.Length % 8);
@@ -129,7 +179,7 @@ public class BMPToBytes
             {
                 pattern = pattern.PadRight(pattern.Length + paddingLength, '0');
             }
-            List<string> segments = new List<string>();
+            segments = new List<string>();
 
             // Separete binary pattern into segments of 8 bits
             for (int j = 0; j < pattern.Length; j += 8)
@@ -146,7 +196,6 @@ public class BMPToBytes
             for (int z = 0; z <= segments.Count - 4; z++)
             {
                 int homogeneity = 0;
-
                 // Count the homogeneity in the current sequence of 4 segments
                 for (int j = z; j < z + 4; j++)
                 {
@@ -154,7 +203,6 @@ public class BMPToBytes
                     int oneCount = 8 - zeroCount;
                     homogeneity += Math.Abs(zeroCount - oneCount);
                 }
-
                 // Update the minimum homogeneity and the starting index if necessary
                 if (homogeneity < minHomogeneity)
                 {
@@ -163,28 +211,42 @@ public class BMPToBytes
                 }
             }
 
-            List<string> result = segments.GetRange(startIndex, 4);
-            Console.Write("Filtered pattern in binary: ");
-            foreach (string res in result)
+            Console.Write("Temporary binary for Row " + allRow[patternIndex] + ": ");
+            for (int i = startIndex; i < startIndex + 4; i++)
             {
-                Console.Write(res);
+                Console.Write(segments[i]);
             }
-            Console.WriteLine();
-            StringBuilder finalPattern = new StringBuilder();
-            foreach (string entry in result)
+            Console.Write("\nHomogenity: " + minHomogeneity + "\n\n");
+            if (minHomogeneity < pickedHomogenity)
             {
-                int asciiValue = Convert.ToInt32(entry, 2);
-                char asciiCharacter = (char)asciiValue;
-                finalPattern.Append(asciiCharacter);
-            }
+                pickedPatternInBinary = "";
+                List<string> result = segments.GetRange(startIndex, 4);
+                StringBuilder finalPattern = new StringBuilder();
+                foreach (string entry in result)
+                {
+                    pickedPatternInBinary += entry;
+                    int asciiValue = Convert.ToInt32(entry, 2);
+                    char asciiCharacter = (char)asciiValue;
+                    finalPattern.Append(asciiCharacter);
+                }
+                pickedPattern = finalPattern.ToString();
+                pickedHomogenity = minHomogeneity;
+                pickedPatternRow = allRow[patternIndex];
 
-            return finalPattern.ToString();
+            }
         }
-        catch (Exception e)
+        if (string.IsNullOrEmpty(pickedPattern))
         {
-            Console.WriteLine($"Something went wrong: {e.Message}");
-            throw e;
+            throw new Exception("Error in coverting fingerprint to a pattern");
         }
+
+        Console.WriteLine("Picked pattern in binary: ");
+        Console.WriteLine(pickedPatternInBinary + "\n");
+        Console.WriteLine("Picked pattern in ascii: ");
+        Console.WriteLine(pickedPattern + "\n");
+        Console.WriteLine("Homogenity: " + pickedHomogenity + " \n");
+        return pickedPattern;
+
     }
 
     private static List<string> RemoveTrailingZeroRows(List<string> binaryRows)
