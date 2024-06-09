@@ -87,8 +87,12 @@ public class BMPToBytes
     {
         var blackAndWhiteBMP = ConvertToBlackAndWhite(filename);
         List<string> binaryRows = ConvertImageToBinary(blackAndWhiteBMP);
+        
         if (binaryRows.Count == 0){
             throw new Exception("Cannot process a black image");
+        }
+        if (binaryRows.Count <= 40 || binaryRows[0].Length <= 40){
+            throw new Exception("Image is to small to process !");
         }
 
         // picking top, center, and bottom pattern
