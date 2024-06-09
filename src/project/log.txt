@@ -1,2 +1,0 @@
-This message will be written to log.txt
-ANJAYY
