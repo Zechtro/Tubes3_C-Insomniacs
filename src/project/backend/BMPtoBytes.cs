@@ -9,8 +9,7 @@ public class BMPToBytes
     public static SixLabors.ImageSharp.Image<Rgba32> ConvertToBlackAndWhite(string filePath)
     {
         SixLabors.ImageSharp.Image<Rgba32> image;
-        image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
-
+        
         // load filePath
         image = SixLabors.ImageSharp.Image.Load<Rgba32>(filePath);
 
