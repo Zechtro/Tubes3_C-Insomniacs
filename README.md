@@ -12,13 +12,13 @@
   - [Setup](#setup)
   - [Usage](#usage)
   - [Project Status](#project-status)
+  - [Links](#links)
   - [Room for Improvement](#room-for-improvement)
   - [Contributors](#contributors)
 
 
 ## General Information
-- This project aims to match a given fingerprint image with fingerprint images inside database with either _Knuth-Morris-Pratt_, _Boyer-Moore_, or _Longest-Common-Distance_ (dynamic programming approach) algorithm, and then show the biodata of the person.
-
+This project aims to match a given fingerprint image with fingerprint images inside database with either _Knuth-Morris-Pratt_, _Boyer-Moore_, or _Longest-Common- Subsequence_ (dynamic programming approach) algorithm, and then show the biodata of the person. _Knuth-Morris-Pratt_ is a string matching algorithm that uses an _lps_ (longest prefix-suffix) table. The table helps to skip unnecessary comparisons when a mismatch occurs by allowing the search to jump to the longest prefix that is also a suffix, thereby improving efficiency. In _Boyer-Moore_ algorithm, we uses two kinds of tables which is the _Bad Character Heuristic_ and _Good Suffix Heuristic_ table, when a mismatch occurs, we will jump the comparison according to both tables.  _Longest-Common-Subsequence_ is used as a last resort when _Knuth-Morris-Pratt_ and _Boyer-Moore_ do not find an exact match. The LCS algorithm, which employs a dynamic programming approach, finds the longest subsequence common to two sequences. This helps in identifying the closest match in scenarios where exact matching is not possible.
 
 ## Technologies Used
 - Dotnet 8.0
@@ -118,6 +118,8 @@
 ## Project Status
 Project is: _complete_
 
+## Links
+- [Video (bonus)](https://youtu.be/G4Y_T3k8KEA?si=tgQKzreVx_ZozHfC)
 
 ## Room for Improvement
 - Better Algorithm
