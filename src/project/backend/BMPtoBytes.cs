@@ -15,7 +15,7 @@ public class BMPToBytes
 
 
         // pixels with grayscale value  > 0.5 will be white
-        // pixels with grayscale value  <= 0.5 will be white
+        // pixels with grayscale value  <= 0.5 will be black
         image.Mutate(ctx => ctx.BinaryThreshold(0.5f));
         return image;
 
